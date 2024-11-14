@@ -1,0 +1,159 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local playerGui = player:WaitForChild("PlayerGui")
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local buttonData = {
+    {name = "1", text = "Weak Laser"},
+    {name = "2", text = "Sun Rays"},
+    {name = "3", text = "turning the magnifying glass towards the sun at enemy"},
+    {name = "4", text = "sun blast at enemy legs"},
+}
+
+for _, data in pairs(buttonData) do
+    local baseButton = hotbarFrame:FindFirstChild(data.name).Base
+    local ToolName = baseButton.ToolName
+    ToolName.Text = data.text
+end
+
+local function waitForGui()
+    while true do
+        local screenGui = playerGui:FindFirstChild("ScreenGui")
+        if screenGui then
+            local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+            if magicHealthFrame then
+                local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+                if textLabel then
+                    textLabel.Text = "The Sun Is a Deadly Laser"
+                end
+              
+                local healthBar = magicHealthFrame:FindFirstChild("Health").Bar.Bar
+                if healthBar then
+                    healthBar.ImageColor3 = Color3.fromRGB(255 ,255 ,0 ) 
+                end
+                
+                return
+            end
+        end
+        wait(1)
+    end
+end
+waitForGui()
+
+local replacementAnimations = {
+    ["10469630950"] = "rbxassetid://16515520431",
+    ["10469639222"] = "rbxassetid://16515448089",
+    ["10468665991"] = "rbxassetid://12351854556",
+    ["10466974800"] = "rbxassetid://13721154327",
+    ["10471336737"] = "rbxassetid://14004235777",
+    ["12510170988"] = "rbxassetid://17838619895",
+    ["12447707844"] = "rbxassetid://16734584478",
+    ["11365563255"] = "rbxassetid://15295895753",
+    ["12983333733"] = "rbxassetid://13083332742",
+    ["15955393872"] = "rbxassetid://13560306510",
+    [""] = "rbxassetid://",
+    [""] = "rbxassetid://",
+    [""] = "rbxassetid://",
+}
+
+local function applyVFX(animationId)
+    local vfxAttachment
+    if animationId == "16515520431" then
+        vfxAttachment = game.ReplicatedStorage.Resources.AtomicSlash.Floor.Floor.Attachment
+    elseif animationId == "12351854556" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Meteor.ExploVar1.Part.Attachment
+    elseif animationId == "13721154327" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Sorcerer.LimitlessBarrier.RootPos.Slash1
+    elseif animationId == "14004235777" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Meteor.ExploVar1.Part.Attachment
+    elseif animationId == "17838619895" then
+        vfxAttachment = game.ReplicatedStorage.Resources.CrabBeam.Distance.punch2.Attachment
+    elseif animationId == "16734584478" then
+        vfxAttachment = game.ReplicatedStorage.Resources.CrabBeam.Explo.Explo.Attachment
+    elseif animationId == "15295895753" then
+        vfxAttachment = game.ReplicatedStorage.Resources.KJEffects.KJWallCombo.FinalImpactHUGEignore:GetChildren()[3]
+    elseif animationId == "13083332742" then
+        vfxAttachment = game.ReplicatedStorage.Resources.KJEffects.KJWallCombo.FinalImpactHUGEignore.Attachment
+    elseif animationId == "13560306510" then
+        vfxAttachment = game.ReplicatedStorage.Resources.KJEffects.KJWallCombo.FinalImpactHUGEignore:GetChildren()[2]
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example9.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example10.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example11.Attachment
+    end
+
+    if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = character.HumanoidRootPart
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+                child:Emit(15)
+                child.Enabled = true
+            end
+        end
+        wait(3)
+        vfxClone:Destroy()
+    else
+        warn("VFX is uss " .. tostring(animationId))
+    end
+end
+
+local function onAnimationPlayed(animationTrack)
+    local animationId = animationTrack.Animation.AnimationId:match("%d+")
+    local replacementId = replacementAnimations[animationId]
+
+    applyVFX(animationId)
+
+    if replacementId then
+        animationTrack:Stop()
+        local newAnimation = Instance.new("Animation")
+        newAnimation.AnimationId = replacementId
+        local newTrack = humanoid:LoadAnimation(newAnimation)
+        newTrack:Play()
+    end
+
+    if animationId == "16734584478" then
+        wait(1)
+        local ultMoves = {
+            {buttonIndex = "1", name = ""},
+            {buttonIndex = "2", name = "Sun Strongest Blasting"},
+            {buttonIndex = "3", name = "SUN STRONGEST LASER"},
+            {buttonIndex = "4", name = "Sunny fly Combo"},
+        }
+        for _, move in ipairs(ultMoves) do
+            local baseButton = hotbarFrame:FindFirstChild(move.buttonIndex).Base
+            baseButton.ToolName.Text = move.name
+        end
+
+        local screenGui = playerGui:FindFirstChild("ScreenGui")
+        if screenGui then
+            local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+            if magicHealthFrame then
+                local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+                if textLabel then
+                    textLabel.Text = "The Sun Is a Deadly Laser"
+                end
+              
+                local healthBar = magicHealthFrame:FindFirstChild("Health").Bar.Bar
+                if healthBar then
+                    healthBar.ImageColor3 = Color3.fromRGB(255 ,255 ,0 ) 
+                end
+            end
+        end
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    humanoid = newCharacter:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+end)
