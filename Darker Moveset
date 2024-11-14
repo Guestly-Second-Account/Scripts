@@ -1,1 +1,98 @@
 loadstring(game:HttpGet("https://rawscripts.net/raw/The-Strongest-Battlegrounds-ARACAURA-script-unfinished-credits-to-reap-19779"))()loadstring(game:HttpGet("https://raw.githubusercontent.com/kaledagoat/-kendjendjen/refs/heads/main/yuji%20itadori.lua"))()loadstring(game:HttpGet("https://paste.ee/r/AnZ5j"))()
+local Test = ((game.ReplicatedStorage.Resources.Katana.Blade.WeaponPE))
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        
+        child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+        child:Emit(15)
+        child.Enabled = true
+    end
+end
+
+local Test = ((game.ReplicatedStorage.Resources.HeadFirst.KickShockwave.Particle.Attachment))
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        
+        child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+        child:Emit(15)
+        child.Enabled = true
+    end
+end
+
+local Test = ((game.ReplicatedStorage.Resources.EsperAwakening.Begin.Begin.Attachment))
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        
+        child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+        child:Emit(15)
+        child.Enabled = true
+    end
+end
+
+local Test = ((game.ReplicatedStorage.Resources.EsperAwakening.Land.Land.Attachment))
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        
+        child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+        child:Emit(15)
+        child.Enabled = true
+    end
+end
+
+local Test = ((game.ReplicatedStorage.Resources.SplitCounter.CounterLand.Part.Attachment))
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        
+        child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+        child:Emit(15)
+        child.Enabled = true
+    end
+end
+
+local Test = ((game.ReplicatedStorage.Resources.TerribleTornado.HandCharge.Part.Attachment))
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        
+        child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+        child:Emit(15)
+        child.Enabled = true
+    end
+end
+
+local Test = ((game.ReplicatedStorage.Resources.TerribleTornado.Wind2.Part.Attachment))
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        
+        child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+        child:Emit(15)
+        child.Enabled = true
+    end
+end
