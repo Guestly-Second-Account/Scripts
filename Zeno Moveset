@@ -1,0 +1,766 @@
+-- Zeno (Dragon Ball)
+
+-- [everything is not needed]
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local playerGui = player:WaitForChild("PlayerGui")
+local hotbar = playerGui:FindFirstChild("Hotbar")
+local backpack = hotbar:FindFirstChild("Backpack")
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local buttonData = {
+    {name = "1", text = "God's Guard Kick"},
+    {name = "2", text = "God's Guards Beat Down"},
+    {name = "3", text = "God's Guard Attack Block"},
+    {name = "4", text = "God's Guards Upper Kick"},
+}
+
+for _, data in pairs(buttonData) do
+    local baseButton = hotbarFrame:FindFirstChild(data.name).Base
+    local ToolName = baseButton.ToolName
+    ToolName.Text = data.text
+end
+
+local function waitForGui()
+    while true do
+        local screenGui = playerGui:FindFirstChild("ScreenGui")
+        if screenGui then
+            local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+            if magicHealthFrame then
+                local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+                if textLabel then
+                    textLabel.Text = "God's True Form"
+                end
+              
+                local healthBar = magicHealthFrame:FindFirstChild("Health").Bar.Bar
+                if healthBar then
+                    healthBar.ImageColor3 = Color3.fromRGB(157, 0, 255) 
+                end
+                
+                return
+            end
+        end
+        wait(1)
+    end
+end
+waitForGui()
+
+local replacementAnimations = {
+    ["10468665991"] = "rbxassetid://15957361339", -- move 
+    ["10466974800"] = "rbxassetid://16310343179", -- move
+    ["10471336737"] = "rbxassetid://13630786846", -- move
+    ["12510170988"] = "rbxassetid://18179181663", -- move
+    ["12447707844"] = "rbxassetid://12772543293", -- ult
+    ["11343318134"] = "rbxassetid://14348083862", -- ult move
+    ["11365563255"] = "rbxassetid://16737255386", -- ult move
+    ["12983333733"] = "rbxassetid://12832505612", -- ult move
+    ["13927612951"] = "rbxassetid://15121659862", -- ult move
+    [""] = "rbxassetid://", -- an variant
+    [""] = "rbxassetid://", -- an variant
+    [""] = "rbxassetid://", -- an variant
+    [""] = "rbxassetid://", -- an variant
+    [""] = "rbxassetid://", -- an variant
+    [""] = "rbxassetid://", -- an variant
+    [""] = "rbxassetid://", -- an variant
+    [""] = "rbxassetid://", -- an variant
+    ["10469493270"] = "rbxassetid://15290930205", -- m1
+    ["10469630950"] = "rbxassetid://17838619895", -- m1
+    ["10469639222"] = "rbxassetid://15997042291", -- m1
+    ["10469643643"] = "rbxassetid://17838006839", -- m1
+    ["10470104242"] = "rbxassetid://12447247483", -- down slam
+    ["10503381238"] = "rbxassetid://14798608838", -- uppercut
+    ["10479335397"] = "rbxassetid://13376962659", -- dash
+    [""] = "rbxassetid://", -- sdash
+    [""] = "rbxassetid://", -- sdash
+    [""] = "rbxassetid://", -- smth
+    [""] = "rbxassetid://", -- smth
+    [""] = "rbxassetid://", -- smth
+    [""] = "rbxassetid://", -- smth
+}
+
+local function applyVFX(animationId)
+    local vfxAttachment
+    if animationId == "15957361339" then
+        vfxAttachment = game.ReplicatedStorage.Resources.HeadFirst.KickShockwave.Particle.Attachment
+    elseif animationId == "16310343179" then
+        vfxAttachment = game.ReplicatedStorage.Resources.AtomicSlash.NewSmokey.NEWSmokey.Attachment
+    elseif animationId == "13630786846" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Fang.GoodWind.GoodWind.Attachment
+    elseif animationId == "18179181663" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Dragon.Roar.Roar.Attachment
+    elseif animationId == "12772543293" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Tornado.Effects["BigSpinEmit"].Attachment
+    elseif animationId == "14348083862" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Omni.AfterExplode.Attachment
+    elseif animationId == "16737255386" then
+        vfxAttachment = game.ReplicatedStorage.Resources.FiveSeasonsFX.FinalExplosion["Particles"].Main1.Attachment
+    elseif animationId == "12832505612" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Meteor.Fire.sss.Attachment
+    elseif animationId == "15121659862" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Dragon.Explosion.GoodWind.Attachment
+    elseif animationId == "17838006839" then
+        vfxAttachment = game.ReplicatedStorage.Resources.Fang.OneInch.dash3.VFX
+    elseif animationId == "13376962659" then
+        vfxAttachment = game.ReplicatedStorage.Resources.VanishingKick.Stomp.Part:GetChildren()[5]
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example11.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example12.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example13.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example14.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example15.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example16.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example17.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example18.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example19.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example20.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example21.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example22.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example23.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example24.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example25.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example26.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example27.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example28.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example29.Attachment
+    elseif animationId == "" then
+        vfxAttachment = game.ReplicatedStorage.Resources.SomeEffect.Example30.Attachment
+    end
+
+    if vfxAttachment then
+        local vfxClone = vfxAttachment:Clone()
+        vfxClone.Parent = character.HumanoidRootPart
+        for _, child in ipairs(vfxClone:GetChildren()) do
+            if child:IsA("ParticleEmitter") then
+                child:Emit(15)
+                child.Enabled = true
+            end
+        end
+        wait(2)
+        vfxClone:Destroy()
+    else
+        warn("VFX is uss " .. tostring(animationId))
+    end
+end
+
+local function onAnimationPlayed(animationTrack)
+    local animationId = animationTrack.Animation.AnimationId:match("%d+")
+    local replacementId = replacementAnimations[animationId]
+
+    applyVFX(animationId)
+
+    if replacementId then
+        animationTrack:Stop()
+        local newAnimation = Instance.new("Animation")
+        newAnimation.AnimationId = replacementId
+        local newTrack = humanoid:LoadAnimation(newAnimation)
+        newTrack:Play()
+    end
+
+    if animationId == "12772543293" then -- add if u want when ult activated to change
+        wait(1)
+        local ultMoves = {
+            {buttonIndex = "1", name = "ERASE"},
+            {buttonIndex = "2", name = "GOD GUARDS COMBINATION"},
+            {buttonIndex = "3", name = "Mighty Pulse"},
+            {buttonIndex = "4", name = "ERASE[TOTALLY]"},
+        }
+        for _, move in ipairs(ultMoves) do
+            local baseButton = hotbarFrame:FindFirstChild(move.buttonIndex).Base
+            baseButton.ToolName.Text = move.name
+        end
+
+        local screenGui = playerGui:FindFirstChild("ScreenGui")
+        if screenGui then
+            local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+            if magicHealthFrame then
+                local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+                if textLabel then
+                    textLabel.Text = "!TRUE GOD FORM!" -- add ult move name if u want when activated [it will be on it it will not come back to first one that is upper]
+                end
+              
+                local healthBar = magicHealthFrame:FindFirstChild("Health").Bar.Bar
+                if healthBar then
+                    healthBar.ImageColor3 = Color3.fromRGB(157, 0, 255) -- here put ult bar color like u can search on google : [red color code]
+                end
+            end
+        end
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+player.CharacterAdded:Connect(function(newCharacter)
+    character = newCharacter
+    humanoid = newCharacter:WaitForChild("Humanoid")
+    humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+end)local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "15957361339"
+local soundId = "rbxassetid://6185097708"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "13630786846"
+local soundId = "rbxassetid://15957361339"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "12772543293"
+local soundId = "rbxassetid://4471125043"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "16737255386"
+local soundId = "rbxassetid://12772543293"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "17838006839"
+local soundId = "rbxassetid://8595977193"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "15121659862"
+local soundId = "rbxassetid://16737255386"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local targetAnimationId = "ANIMATION_ID"
+local soundId = "rbxassetid://SOUND_ID"
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. targetAnimationId then
+        -- Create a sound object and configure it
+        local sound = Instance.new("Sound", character.HumanoidRootPart)
+        sound.SoundId = soundId
+        sound.Volume = 1
+        sound:Play()
+
+        sound.Ended:Connect(function()
+            sound:Destroy()
+        end)
+    end
+end
+
