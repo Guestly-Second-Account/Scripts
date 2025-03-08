@@ -1,0 +1,135 @@
+local entityModel = true
+
+for _, v in pairs(workspace.CurrentRooms:GetDescendants()) do
+
+if game.Workspace:FindFirstChild("SeekMovingNewClone")  or game.ReplicatedStorage.GameData.LatestRoom.Value == 51 or game.ReplicatedStorage.GameData.LatestRoom.Value == 52 or workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets:FindFirstChild("ShopProps") or v.Name == "DiningTable_" or v.Name == "BridgeOutSign" then 
+
+entityModel = false
+
+end
+
+end
+ 
+if entityModel then
+
+---====== Define spawner ======---
+ 
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/V1/Source.lua"))()
+
+local TweenService = game:GetService("TweenService")
+local TW = TweenService:Create(game.Lighting.MainColorCorrection, TweenInfo.new(5),{TintColor = Color3.fromRGB(255, 0, 0)})
+TW:Play()
+
+---====== Create entity ======---
+ 
+local entity = Spawner.createEntity({
+    CustomName = "A-60",
+    Model = "https://github.com/plamen6789/CustomDoorsMonsters/blob/main/A-60.rbxm?raw=true",
+    Speed = 500,
+    MoveDelay = 5,
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 100,
+    SpawnInFront = false,
+    ShatterLights = true,
+    FlickerLights = {
+        Enabled = true,
+        Duration = 5
+    },
+    Cycles = {
+        Min = 1,
+        Max = 1,
+        Delay = 0
+    },
+    CamShake = {
+        Enabled = true,
+        Values = {1.5, 20, 0.1, 1},
+        Range = 100
+    },
+    ResistCrucifix = false,
+    BreakCrucifix = true
+})
+
+if workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("FigureSetup") or workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("_NestHandler") then 
+
+entity.Config.CanKill = false
+
+end
+ 
+---====== Debug ======---
+ 
+entity.Debug.OnEntitySpawned = function()
+    print("Entity has spawned")
+end
+ 
+entity.Debug.OnEntityDespawned = function()
+    print("Entity has despawned")
+---====== Load achievement giver ======---
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+ 
+---====== Display achievement ======---
+achievementGiver({
+    Title = "Constant Speed",
+    Desc = "I'll be moving here",
+    Reason = "Encounter A-60",
+    Image = "rbxassetid://135864385139745"
+})
+end
+ 
+entity.Debug.OnEntityStartMoving = function()
+    print("Entity started moving")
+end
+ 
+entity.Debug.OnEntityFinishedRebound = function()
+    print("Entity finished rebound")
+end
+ 
+entity.Debug.OnEntityEnteredRoom = function(room)
+    print("Entity entered room:", room)
+local replicatedStorage = game:GetService("ReplicatedStorage")
+   local currentRooms = workspace.CurrentRooms
+   local latestRoom = replicatedStorage.GameData.LatestRoom.Value
+
+
+   local door = currentRooms[latestRoom]:WaitForChild("Door").ClientOpen
+
+
+   local function openDoor()
+       
+       print("Open door")
+
+
+       door:FireServer()
+   end
+
+
+   openDoor()
+end
+ 
+entity.Debug.OnLookAtEntity = function()
+    print("Player looking at entity")
+end
+ 
+entity.Debug.OnDeath = function()
+    print("Player has died")
+require(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Jumpscares.Death)(require(game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game))
+firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"Oh... hello", "It's not that place...", "It's pretty curiosity just to get here, last time I checked", "Anyways, what'd you die to?", "Oh... the red one. I'm not too sure on what I would call it...", "Well, it usually attacks around current room, so...", "...you could just call it A-60. I don't know", "Anyways. I hope you do mind trying again. It's would be helpful"}, "Yellow") -- "Blue" or "Yellow"
+end
+ 
+--[[
+    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+ 
+    entity.Debug.OnUseCrucifix = function()
+        print("Custom crucifixion script here")
+    end
+]]--
+ 
+---====== Run entity ======---
+ 
+Spawner.runEntity(entity)
+
+wait(10)
+TW = TweenService:Create(game.Lighting.MainColorCorrection, TweenInfo.new(10),{TintColor = Color3.fromRGB(255, 255, 255)})
+TW:Play()
+
+end
