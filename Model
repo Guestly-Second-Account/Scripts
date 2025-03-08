@@ -1,0 +1,145 @@
+local entityModel = true 
+
+if workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetAttribute("RequiresKey") or workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets:FindFirstChild("Gate") or workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets:FindFirstChild("MinesGate") or game.Workspace:FindFirstChild("SeekMovingNewClone") or workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets:FindFirstChild("FigureSetup") or workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets:FindFirstChild("_NestHandler") or game.ReplicatedStorage.GameData.LatestRoom.Value == 100 then
+
+entityModel = false 
+
+end 
+
+if entityModel then
+
+local damage = false
+
+local Spawner = loadstring(game:HttpGet('https://raw.githubusercontent.com/MuhXd/DoorSuff/main/OtherSuff/DoorEntitySpawn%2BSource'))()
+
+
+-- Create entity
+local entity = Spawner.createEntity({
+    CustomName = "Lookman", -- Custom name of your entity
+    Model = "rbxassetid://94136739091799", -- Can be GitHub file or rbxassetid
+    Speed = 0, -- Percentage, 100 = default Rush speed
+    DelayTime = 0, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
+    CanKill = false,
+    NoDieOnCrouching = false,
+    NoHiding = false,
+    AntiCrucifix = false,
+    KillRange = 0,
+    OneRoom = true,
+    DieOnLook = false,
+    BreakLights = false,
+    BackwardsMovement = false,
+     MovementDeath = {
+        false, -- Turned On?
+        '1',  --- '1'= 'Instant Without Being Looked out' | '2' = 'With Being Looked At'
+    },
+    FlickerLights = {
+        false, -- Enabled/Disabled
+        1, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 0,
+        Max = 0,
+        WaitTime = 0,
+    },
+    CamShake = {
+        false, -- Enabled/Disabled
+        {3.5, 20, 0.1, 1}, -- Shake values (don't change if you don't know)
+        100, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        false, -- Enabled/Disabled
+        {
+            Type = "2", -- "Normal" or 1 | "Pop" or 2 | "endlessdoorsrebound" or "Rebound" or 3 | More coming Soon
+            Image1 = "rbxassetid://10483855823", -- Image1 url
+            Image2 = "rbxassetid://10483999903", -- Image2 url
+            Shake = true,
+            Sound1 = {
+                "0", -- SoundId Link or Roblox ID
+                { Volume = 5 }, -- Sound properties
+            },
+            Sound2 = {
+                "0", -- SoundId Link or Roblox ID
+                { Volume = 3 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(255, 255, 255), -- Color
+            },
+            Tease = {
+                true, -- Enabled/Disabled
+                Min = 1,
+                Max = 3,
+            },
+        },
+    },
+    Color = 'GuidingLight', -- CuriousLight ( Yellow ) | GuidingLight ( Blue )
+    DiffrentMessages = false,
+    CustomDialog = {  
+        {"Claim has seen you.", "It will consume anyone on sight.", "It takes a bit to fully spawn in", "so you can use that to your advantage."}, -- Death Messages
+        {"Stop Dieing"},
+        {"Bruh", "Use what you have learned from Rush!"},
+        {"It seems like Template is causing quite the ruckus...", "Hide in a closet or bed as quickly as possible!"},
+         {"I have told You What to do", "YOU JUST HAVE A SKILL ISSUE"}
+    }
+})
+
+-----[[ Advanced Sctipting ]]-----
+
+entity.Debug.OnEntityMoving = function()
+    if damage and game.Players.LocalPlayer.Character.Humanoid.Shield.Value == 0 then
+        game.Players.LocalPlayer.Character.Humanoid:TakeDamage(0.1)
+        game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Health.Hit:Play()
+    elseif damage and game.Players.LocalPlayer.Character.Humanoid.Shield.Value == (1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9 or 10 or 11 or 12 or 13 or 14 or 15 or 16 or 17 or 18 or 19 or 20 or 21 or 22 or 23 or 24 or 25 or 26 or 27 or 28 or 29 or 30 or 31 or 32 or 33 or 34 or 35 or 36 or 37 or 38 or 39 or 40 or 41 or 42 or 43 or 44 or 45 or 46 or 47 or 48 or 49 or 50) then
+        game.Players.LocalPlayer.Character.Humanoid.Shield:TakeDamage(0.1)
+        game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.Health.HitShield:Play()
+    else
+        damage = true
+    end
+    if game.Players.LocalPlayer.PlayerGui.MainUI.MainFrame.HideVignette.Visible == true then
+        damage = false
+    end
+    if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+        game.ReplicatedStorage.GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Overseer Eyes"
+         firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"You ded again", "This entity looks green eyes.."}, "Yellow")
+        damage = false
+    end
+end
+       
+entity.Debug.OnEntitySpawned = function()
+    print("Entity has spawned:")
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+workspace.Lookman:Destroy()
+end
+
+entity.Debug.OnEntityDespawned = function()
+    print("Entity has despawned:")
+end
+
+entity.Debug.OnEntityStartMoving = function()
+    print("Entity has started moving:")
+end
+
+entity.Debug.OnEntityFinishedRebound = function()
+    print("Entity has finished rebound:")
+end
+
+entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
+    print("Entity:", "has entered room:",room)
+end
+
+entity.Debug.OnLookAtEntity = function(inSight)
+    print("Player has looked at entity:")
+damage = false
+end
+
+entity.Debug.OnDeath = function()
+    warn("Player has died.")
+end
+
+------------------------
+
+-- Run the created entity
+Spawner.runEntity(entity)
+
+end
