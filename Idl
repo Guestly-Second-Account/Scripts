@@ -1,0 +1,66 @@
+--[[
+
+    NOTE: Custom shop items will NOT cost any real knobs
+
+]]--
+
+local Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))()
+local CustomShop = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Shop%20Items/Source.lua"))()
+
+
+-- Create your tool here
+local exampleTool = LoadCustomInstance("rbxassetid://16465312383")
+
+
+-- Create custom shop item
+if game.Players.LocalPlayer.PlayerGui.MainUI.ItemShop.Visible then
+CustomShop.CreateItem(exampleTool, {
+    Title = "Current Candle",
+    Desc = "Your new item, have fun!",
+    Image = "rbxassetid://119782741305330",
+    Price = 125,
+    Stack = 1,
+})
+else
+for _, v in next, game.Players.LocalPlayer:GetDescendants() do
+	if v.Name == "Backpack" then
+		exampleTool.Parent = v
+	end
+end
+end
+
+exampleTool.TextureId = "rbxassetid://119782741305330"
+
+local plr = game.Players.LocalPlayer
+local Char = plr.Character or plr.CharacterAdded:Wait()
+local Hum = Char:FindFirstChild("Humanoid")
+local RightArm = Char:FindFirstChild("RightUpperArm")
+local LeftArm = Char:FindFirstChild("LeftUpperArm")
+local RightC1 = RightArm.RightShoulder.C1
+local LeftC1 = LeftArm.LeftShoulder.C1
+local AnimIdle = Instance.new("Animation")
+AnimIdle.AnimationId = "rbxassetid://9982615727"
+AnimIdle.Name = "IDleloppop"
+local track = Hum.Animator:LoadAnimation(AnimIdle)
+track.Looped = true
+local Equipped = false
+for i, v in pairs(exampleTool:GetDescendants()) do
+	if v:IsA("BasePart") then
+		v.CanCollide = false
+	end
+end
+exampleTool.Equipped:Connect(function()
+	for _, v in next, Hum:GetPlayingAnimationTracks() do
+		v:Stop()
+	end
+	Equipped = true
+    -- RightArm.Name = "R_Arm"
+	track:Play()
+    -- RightArm.RightShoulder.C1 = RightC1 * CFrame.Angles(math.rad(-90), math.rad(-15), 0)
+end)
+exampleTool.Unequipped:Connect(function()
+	RightArm.Name = "RightUpperArm"
+	track:Stop()
+	Equipped = false
+    -- RightArm.RightShoulder.C1 = RightC1
+end)
