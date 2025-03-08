@@ -1,0 +1,29 @@
+-- key obtain new click sound
+
+coroutine.wrap(function()
+
+if game:GetService("ReplicatedStorage").GameData.Floor.Value == "Hotel" or game:GetService("ReplicatedStorage").GameData.Floor.Value == "Backdoor" then
+
+for _, v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetDescendants()) do
+ 	if v.Name == "KeyObtain" then
+		v:WaitForChild("Hitbox"):WaitForChild("Sound").SoundId = "rbxassetid://189777179"
+	end
+end
+ 
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+
+for _, v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetDescendants()) do
+ 	if v.Name == "KeyObtain" then
+		v:WaitForChild("Hitbox"):WaitForChild("Sound").SoundId = "rbxassetid://189777179"
+	end
+end
+
+end)
+
+--[[ ]]--
+
+end
+
+end)()
+
+--
