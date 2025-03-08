@@ -1,0 +1,650 @@
+-- gc new
+
+coroutine.wrap(function()
+
+if game:GetService("ReplicatedStorage").GameData.Floor.Value == "Mines" then
+
+local spawningchance = math.random(1, 10)
+
+if spawningchance == 1 then return end
+
+function spawngc(posy)
+ 
+local abc = game:GetObjects("rbxassetid://126482676225677")[1]
+ 
+local gcnew = abc.Handle:Clone()
+ 
+abc:Destroy()
+ 
+gcnew.Parent = game.Workspace
+
+gcnew.Name = "GCNEW"
+ 
+gcnew.Position = posy
+ 
+gcnew.Anchored = true
+ 
+local xy = math.random(-90, 90)
+ 
+gcnew.CFrame = CFrame.lookAt(gcnew.Position, gcnew.Position - Vector3.new(xy, yy, zy))
+ 
+gcnew.Rotation = Vector3.new(0, xy, 0)
+
+local lighty = Instance.new("PointLight")
+ 
+lighty.Brightness = 10000
+ 
+lighty.Parent = gcnew
+ 
+lighty.Enabled = true
+ 
+lighty.Color = Color3.fromRGB(0,205,255)
+ 
+lighty.Range = 1
+ 
+local lightp = Instance.new("PointLight")
+ 
+lightp.Brightness = 3
+ 
+lightp.Parent = gcnew
+ 
+lightp.Enabled = true
+ 
+lightp.Color = Color3.fromRGB(0,100,255)
+ 
+lightp.Range = 10
+ 
+local prompty = Instance.new("ProximityPrompt")
+ 
+prompty.Name = "prompty"
+ 
+prompty.MaxActivationDistance = 5
+ 
+prompty.ObjectText = "Custom"
+ 
+prompty.RequiresLineOfSight = true
+ 
+prompty.Parent = gcnew
+ 
+prompty.Style = "Custom"
+ 
+prompty.Triggered:Connect(function()
+ 
+gcnew:Destroy()
+ 
+local shadow=game:GetObjects("rbxassetid://126482676225677")[1]
+ 
+shadow.Parent = game.Players.LocalPlayer.Backpack
+ 
+local Players = game:GetService("Players")
+ 
+local Plr = Players.LocalPlayer
+ 
+local Char = Plr.Character or Plr.CharacterAdded:Wait()
+ 
+local Hum = Char:WaitForChild("Humanoid")
+ 
+local RightArm = Char:WaitForChild("RightUpperArm")
+ 
+local RightC1 = RightArm.RightShoulder.C1
+ 
+        local function setupCrucifix(tool)
+ 
+        RightArm.Name = "R_Arm"
+ 
+ 
+ 
+        RightArm.RightShoulder.C1 = RightC1 * CFrame.Angles(math.rad(-90), math.rad(-15), 0)
+
+        game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
+
+            if child.Name == "GuidingCandleNew" then
+
+            RightArm.RightShoulder.C1 = RightC1 * CFrame.Angles(0, math.rad(-15), 0)
+
+            end
+
+        end)
+ 
+        for _, v in next, Hum:GetPlayingAnimationTracks() do
+ 
+            v:Stop()
+ 
+        end
+ 
+        end
+ 
+shadow.Equipped:Connect(function()
+ 
+setupCrucifix(shadow)
+ 
+game.Players.LocalPlayer:SetAttribute("Hidden", true)
+ 
+end)
+ 
+ 
+ 
+shadow.Unequipped:Connect(function()
+ 
+    game.Players.LocalPlayer:SetAttribute("Hidden", false)
+ 
+        RightArm.Name = "RightUpperArm"
+ 
+        LeftArm.Name = "LeftUpperArm"
+ 
+ 
+ 
+        RightArm.RightShoulder.C1 = RightC1
+ 
+        LeftArm.LeftShoulder.C1 = LeftC1
+ 
+end)
+
+function selection(lightening)
+	local highlight = Instance.new("Highlight")
+	highlight.Adornee = lightening
+	highlight.OutlineColor = Color3.fromRGB(0, 205, 255)
+	highlight.FillColor = Color3.fromRGB(0, 205, 255)
+	highlight.Parent = lightening
+	if lightening:IsA("BasePart") then
+		lightening.Color = Color3.fromRGB(0, 205, 255)
+		lightening.Transparency = 0
+	end
+end
+
+function entities(monster)
+	local highlight = Instance.new("Highlight")
+	highlight.Adornee = monster
+	highlight.OutlineColor = Color3.fromRGB(255, 10, 0)
+	highlight.FillColor = Color3.fromRGB(255, 10, 0)
+	highlight.Parent = monster
+	if monster:IsA("BasePart") then
+		monster.Color = Color3.fromRGB(255, 10, 0)
+		monster.Transparency = 0
+	end
+end
+
+workspace.ChildAdded:Connect(function(child)
+	if child.Name == "Eyes" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Eyes Detected";
+			Text = "Eyes has spawned! Don't look this entity!";
+		})
+		entities(child:WaitForChild("Core"))
+	elseif child.Name == "RushMoving" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Rush Detected";
+			Text = "Rush is coming! Hide!";
+		})
+		entities(child:WaitForChild("RushNew"))
+	elseif child.Name == "AmbushMoving" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Ambush Detected";
+			Text = "Ambush is coming! Hide!";
+		})
+		entities(child:WaitForChild("RushNew"))
+	elseif child.Name == "GloombatSwarm" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Gloombat Swarm Detected";
+			Text = "Gloombats has spawned or to next room!";
+		})
+	elseif child.Name == "Dread" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Dread Detected";
+			Text = "Dread has spawned! Run from this entity and/or open door!";
+		})
+		entities(child:WaitForChild("Main"))
+	elseif (game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("TrickOrTreat") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("BackdoorLookman") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("AdminPanelButton")) and child.Name == "BackdoorLookman" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Lookman Detected";
+			Text = "Lookman has spawned! Don't look this entity!";
+		})
+		entities(child:WaitForChild("Core"))
+	elseif (game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("BackdoorRush") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("AdminPanelButton")) and child.Name == "BackdoorRush" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Blitz Detected";
+			Text = "Blitz is coming! Hide!";
+		})
+		entities(child:WaitForChild("Main"))
+	elseif (game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("Rooms") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("AdminPanelButton")) and child.Name == "A60" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "A-60 Detected";
+			Text = "A-60 is coming! Hide!";
+		})
+		entities(child:WaitForChild("Main"))
+	elseif (game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("Rooms") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("AdminPanelButton")) and child.Name == "A120" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "A-120 Detected";
+			Text = "A-120 is coming! Hide!";
+		})
+		entities(child:WaitForChild("Main"))
+	end
+end)
+
+for _, v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetDescendants()) do
+	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
+		selection(v)
+	elseif v.Name == "MinesGenerator" then
+		selection(v)
+	elseif v.Name == "MinesGateButton" then
+		selection(v)
+	elseif v.Name == "FuseObtain" then
+		selection(v)
+	end
+end
+
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+
+for _, v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetDescendants()) do
+	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
+		selection(v)
+	elseif v.Name == "MinesGenerator" then
+		selection(v)
+	elseif v.Name == "MinesGateButton" then
+		selection(v)
+	elseif v.Name == "Toolshed_Small" then
+		selection(v)
+	elseif v.Name == "Chest_Vine" then
+		selection(v)
+	elseif v.Name == "ChestBoxLocked" then
+		selection(v)
+	elseif v.Name == "FuseObtain" then
+		selection(v)
+	elseif v.Name == "MinesAnchor" then
+		selection(v)
+	elseif v.Name == "WaterPump" then
+		selection(v)
+	end
+end
+
+for _, child in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetDescendants()) do
+	if child.Name == "FigureRig" then
+		entities(child)
+	elseif child.Name == "GrumbleRig" and child.Parent.Name == "Grumbo" then
+		entities(child)
+	elseif child.Name == "DuckBoard" then
+		entities(child) -- mistake (:})
+	end
+end
+
+end)
+
+workspace.Camera.ChildAdded:Connect(function(child)
+	if child.Name == "Screech" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Screech Detected";
+			Text = "Screech has spawned! Look around you!";
+		})
+	end
+end)
+
+game.Players.LocalPlayer.Backpack.GuidingCandleNew.Candle.AttachOff.PointLight.Brightness = 10
+game.Players.LocalPlayer.Backpack.GuidingCandleNew.Candle.AttachOff.PointLight.Range = 19
+
+workspace.ChildAdded:Connect(function(v)
+
+if v.Name == "GuidingCandleNew" then
+
+v.Handle.sound_blow:Play()
+v.Handle.sound_open:Play()
+
+end
+
+end)
+
+print("Syntax Highlighting")
+
+writefile("Forgotten Mode Saves.artemis", "7gLLX5o6h5EP5kx86")
+ 
+end)
+ 
+--
+ 
+end
+ 
+--
+ 
+ 
+ 
+local lastroom = game:GetService("ReplicatedStorage").GameData.LatestRoom.Value
+ 
+    if game.Workspace.CurrentRooms[lastroom].Assets:FindFirstChild("Locker_Small") then
+
+        local positio = game.Workspace.CurrentRooms[lastroom].Assets.Locker_Small.Main.Position + Vector3.new(0, 1.7, 0)
+ 
+        spawngc(positio)
+ 
+    end
+ 
+
+ 
+--
+
+elseif game:GetService("ReplicatedStorage").GameData.Floor.Value == "Hotel" then
+
+local spawningchance = math.random(1, 10)
+
+if spawningchance == 10 then return end
+
+if isfile("Forgotten Mode Saves.artemis") then
+
+local pass = readfile("Forgotten Mode Saves.artemis")
+
+if pass == "7gLLX5o6h5EP5kx86" then
+
+function spawngc(posy)
+ 
+local abc = game:GetObjects("rbxassetid://126482676225677")[1]
+ 
+local gcnew = abc.Handle:Clone()
+ 
+abc:Destroy()
+ 
+gcnew.Parent = game.Workspace
+
+gcnew.Name = "GCNEW"
+ 
+gcnew.Position = posy
+ 
+gcnew.Anchored = true
+ 
+local xy = math.random(-90, 90)
+ 
+gcnew.CFrame = CFrame.lookAt(gcnew.Position, gcnew.Position - Vector3.new(xy, yy, zy))
+ 
+gcnew.Rotation = Vector3.new(0, xy, 0)
+
+local lighty = Instance.new("PointLight")
+ 
+lighty.Brightness = 10000
+ 
+lighty.Parent = gcnew
+ 
+lighty.Enabled = true
+ 
+lighty.Color = Color3.fromRGB(0,205,255)
+ 
+lighty.Range = 1
+ 
+local lightp = Instance.new("PointLight")
+ 
+lightp.Brightness = 3
+ 
+lightp.Parent = gcnew
+ 
+lightp.Enabled = true
+ 
+lightp.Color = Color3.fromRGB(0,100,255)
+ 
+lightp.Range = 10
+ 
+local prompty = Instance.new("ProximityPrompt")
+ 
+prompty.Name = "prompty"
+ 
+prompty.MaxActivationDistance = 5
+ 
+prompty.ObjectText = "Custom"
+ 
+prompty.RequiresLineOfSight = true
+ 
+prompty.Parent = gcnew
+ 
+prompty.Style = "Custom"
+ 
+prompty.Triggered:Connect(function()
+ 
+gcnew:Destroy()
+ 
+local shadow=game:GetObjects("rbxassetid://126482676225677")[1]
+ 
+shadow.Parent = game.Players.LocalPlayer.Backpack
+ 
+local Players = game:GetService("Players")
+ 
+local Plr = Players.LocalPlayer
+ 
+local Char = Plr.Character or Plr.CharacterAdded:Wait()
+ 
+local Hum = Char:WaitForChild("Humanoid")
+ 
+local RightArm = Char:WaitForChild("RightUpperArm")
+
+ 
+local RightC1 = RightArm.RightShoulder.C1
+ 
+        local function setupCrucifix(tool)
+ 
+        RightArm.Name = "R_Arm"
+ 
+ 
+ 
+        RightArm.RightShoulder.C1 = RightC1 * CFrame.Angles(math.rad(-90), math.rad(-15), 0)
+
+        game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
+
+            if child.Name == "GuidingCandleNew" then
+
+            RightArm.RightShoulder.C1 = RightC1 * CFrame.Angles(0, math.rad(-15), 0)
+
+            end
+
+        end)
+ 
+        for _, v in next, Hum:GetPlayingAnimationTracks() do
+ 
+            v:Stop()
+ 
+        end
+ 
+        end
+ 
+shadow.Equipped:Connect(function()
+ 
+setupCrucifix(shadow)
+ 
+game.Players.LocalPlayer:SetAttribute("Hidden", true)
+ 
+end)
+ 
+ 
+ 
+shadow.Unequipped:Connect(function()
+ 
+    game.Players.LocalPlayer:SetAttribute("Hidden", false)
+ 
+        RightArm.Name = "RightUpperArm"
+ 
+        LeftArm.Name = "LeftUpperArm"
+ 
+ 
+ 
+        RightArm.RightShoulder.C1 = RightC1
+ 
+        LeftArm.LeftShoulder.C1 = LeftC1
+ 
+end)
+
+function selection(lightening)
+	local highlight = Instance.new("Highlight")
+	highlight.Adornee = lightening
+	highlight.OutlineColor = Color3.fromRGB(0, 205, 255)
+	highlight.FillColor = Color3.fromRGB(0, 205, 255)
+	highlight.Parent = lightening
+	if lightening:IsA("BasePart") then
+		lightening.Color = Color3.fromRGB(0, 205, 255)
+		lightening.Transparency = 0
+	end
+end
+
+function entities(monster)
+	local highlight = Instance.new("Highlight")
+	highlight.Adornee = monster
+	highlight.OutlineColor = Color3.fromRGB(255, 10, 0)
+	highlight.FillColor = Color3.fromRGB(255, 10, 0)
+	highlight.Parent = monster
+	if monster:IsA("BasePart") then
+		monster.Color = Color3.fromRGB(255, 10, 0)
+		monster.Transparency = 0
+	end
+end
+
+workspace.ChildAdded:Connect(function(child)
+	if child.Name == "Eyes" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Eyes Detected";
+			Text = "Eyes has spawned! Don't look this entity!";
+		})
+		entities(child:WaitForChild("Core"))
+	elseif child.Name == "RushMoving" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Rush Detected";
+			Text = "Rush is coming! Hide!";
+		})
+		entities(child:WaitForChild("RushNew"))
+	elseif child.Name == "AmbushMoving" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Ambush Detected";
+			Text = "Ambush is coming! Hide!";
+		})
+		entities(child:WaitForChild("RushNew"))
+	elseif child.Name == "GloombatSwarm" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Gloombat Swarm Detected";
+			Text = "Gloombats has spawned or to next room!";
+		})
+	elseif child.Name == "Dread" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Dread Detected";
+			Text = "Dread has spawned! Run from this entity and/or open door!";
+		})
+		entities(child:WaitForChild("Main"))
+	elseif (game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("TrickOrTreat") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("BackdoorLookman") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("AdminPanelButton")) and child.Name == "BackdoorLookman" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Lookman Detected";
+			Text = "Lookman has spawned! Don't look this entity!";
+		})
+		entities(child:WaitForChild("Core"))
+	elseif (game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("BackdoorRush") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("AdminPanelButton")) and child.Name == "BackdoorRush" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Blitz Detected";
+			Text = "Blitz is coming! Hide!";
+		})
+		entities(child:WaitForChild("Main"))
+	elseif (game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("Rooms") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("AdminPanelButton")) and child.Name == "A60" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "A-60 Detected";
+			Text = "A-60 is coming! Hide!";
+		})
+		entities(child:WaitForChild("Main"))
+	elseif (game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("Rooms") or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("AdminPanelButton")) and child.Name == "A120" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "A-120 Detected";
+			Text = "A-120 is coming! Hide!";
+		})
+		entities(child:WaitForChild("Main"))
+	end
+end)
+
+for _, v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetDescendants()) do
+	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
+		selection(v)
+	elseif v.Name == "KeyObtain" then
+		selection(v)
+	end
+end
+
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
+
+for _, v in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetDescendants()) do
+	if v:IsA("BasePart") and v.Name == "Door" and v.Parent.Name == "Door" then
+		selection(v)
+	elseif v.Name == "KeyObtain" then
+		selection(v)
+	elseif v.Name == "LeverForGate" then
+		selection(v)
+	elseif v.Name == "TimerLever" then
+		selection(v)
+	elseif v.Name == "Toolshed_Small" then
+		selection(v)
+	elseif v.Name == "ChestBox" then
+		selection(v)
+	elseif v.Name == "ChestBoxLocked" then
+		selection(v)
+	elseif v.Name == "LiveHintBook" then
+		selection(v)
+	elseif v.Name == "ElectricalKeyObtain" then
+		selection(v)
+	elseif v.Name == "LiveBreakerPolePickup" then
+		selection(v)
+	end
+end
+
+for _, child in pairs(workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:GetDescendants()) do
+	if child.Name == "FigureRig" then
+		entities(child)
+	elseif child.Name == "Snare" then
+		entities(child)
+	end
+end
+
+end)
+
+workspace.Camera.ChildAdded:Connect(function(child)
+	if child.Name == "Screech" then
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "Screech Detected";
+			Text = "Screech has spawned! Look around you!";
+		})
+	end
+end)
+
+--
+ 
+game.Players.LocalPlayer.Backpack.GuidingCandleNew.Candle.AttachOff.PointLight.Brightness = 10
+game.Players.LocalPlayer.Backpack.GuidingCandleNew.Candle.AttachOff.PointLight.Range = 19
+
+workspace.ChildAdded:Connect(function(v)
+
+if v.Name == "GuidingCandleNew" then
+
+v.Handle.sound_blow:Play()
+v.Handle.sound_open:Play()
+
+end
+
+end)
+
+print("Syntax Highlighting")
+
+end)
+
+--
+ 
+end
+ 
+--
+ 
+ 
+ 
+local lastroom = game:GetService("ReplicatedStorage").GameData.LatestRoom.Value
+ 
+    if game.Workspace.CurrentRooms[lastroom].Assets:FindFirstChild("Table") then
+
+        local positio = game.Workspace.CurrentRooms[lastroom].Assets.Table.Main.Position + Vector3.new(0, 2.5, 0)
+ 
+        spawngc(positio)
+ 
+    end
+ 
+
+ 
+--
+
+end
+
+end
+
+end
+
+end)()
