@@ -1,0 +1,111 @@
+---====== Define spawner ======---
+ 
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/V1/Source.lua"))()
+ 
+---====== Create entity ======---
+ 
+local entity = Spawner.createEntity({
+    CustomName = "E-200",
+    Model = "rbxassetid://16556742391",
+    Speed = 65,
+    MoveDelay = 3,
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 10,
+    SpawnInFront = true,
+    ShatterLights = false,
+    FlickerLights = {
+        Enabled = false,
+        Duration = 0
+    },
+    Cycles = {
+        Min = 17,
+        Max = 20,
+        Delay = 2
+    },
+    CamShake = {
+        Enabled = true,
+        Values = {1.5, 20, 0.1, 1},
+        Range = 100
+    },
+    ResistCrucifix = false,
+    BreakCrucifix = true
+})
+ 
+---====== Debug ======---
+ 
+entity.Debug.OnEntitySpawned = function()
+    print("Entity has spawned")
+local cue2 = Instance.new("Sound")
+	cue2.Parent = game.Workspace
+	cue2.MaxDistance = 4000
+	cue2.Name = "Spawn"
+	cue2.SoundId = "rbxassetid://9073925913"
+	cue2.Volume = 1
+	cue2.PlaybackSpeed = 0.95
+	cue2:Play()
+local sound = Instance.new("Sound")
+	sound.Parent = game.Workspace:WaitForChild("E-200").Torso
+	sound.MaxDistance = 1000
+	sound.Name = "Ambience"
+	sound.SoundId = "rbxassetid://1228230799"
+	sound.Volume = 1
+	sound.PlaybackSpeed = 0.85
+	sound.Looped = true
+	sound:Play()
+local sound2 = Instance.new("Sound")
+	sound2.Parent = game.Workspace:WaitForChild("E-200").Torso
+	sound2.MaxDistance = 4000
+	sound2.Name = "Ambience2"
+	sound2.SoundId = "rbxassetid://9119462099"
+	sound2.Volume = 3
+	sound2.PlaybackSpeed = 0.8
+	sound2.Looped = true
+	sound2:Play()
+end
+ 
+entity.Debug.OnEntityDespawned = function()
+    print("Entity has despawned")
+end
+ 
+entity.Debug.OnEntityStartMoving = function()
+    print("Entity started moving")
+end
+ 
+entity.Debug.OnEntityFinishedRebound = function()
+    print("Entity finished rebound")
+local fakeout = Instance.new("Sound")
+	fakeout.Parent = game.Workspace
+	fakeout.Name = "Despawn_Fakeout"
+	fakeout.SoundId = "rbxassetid://12948668162"
+	fakeout.Volume = 999
+	fakeout.PlaybackSpeed = 0.95
+	fakeout:Play()
+end
+ 
+entity.Debug.OnEntityEnteredRoom = function(room)
+    print("Entity entered room:", room)
+end
+ 
+entity.Debug.OnLookAtEntity = function()
+    print("Player looking at entity")
+end
+ 
+entity.Debug.OnDeath = function()
+    print("Player has died")
+game.Workspace:WaitForChild("E-200").Torso.Death.Popup.E200Jumpscare.Visible = true
+wait(0.001)
+firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"Welcome back", "I'm surprised you found this place...", "It's pretty tedious just to get here, last time I checked", "Anyways, what'd you die to?", "Oh... the light yellow-green. I'm not too sure on what I would call it...", "Well, it usually attacks around lastest room, so...", "Anyways. I hope you don't mind trying again. It would be helpful"}, "Yellow") -- "Blue" or "Yellow"
+end
+ 
+--[[
+    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+ 
+    entity.Debug.OnUseCrucifix = function()
+        print("Custom crucifixion script here")
+    end
+]]--
+ 
+---====== Run entity ======---
+ 
+Spawner.runEntity(entity)
