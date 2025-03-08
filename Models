@@ -1,0 +1,117 @@
+local entityModel = true
+ 
+if game.Workspace:FindFirstChild("SeekMovingNewClone") or game.ReplicatedStorage.GameData.LatestRoom.Value == 50 or game.ReplicatedStorage.GameData.LatestRoom.Value == 51 or game.ReplicatedStorage.GameData.LatestRoom.Value == 52 or workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets:FindFirstChild("ShopProps") or game.ReplicatedStorage.GameData.LatestRoom.Value == 90 or game.ReplicatedStorage.GameData.LatestRoom.Value == 91 or game.ReplicatedStorage.GameData.LatestRoom.Value == 92 or game.ReplicatedStorage.GameData.LatestRoom.Value == 93 or game.ReplicatedStorage.GameData.LatestRoom.Value == 94 or game.ReplicatedStorage.GameData.LatestRoom.Value == 95 or game.ReplicatedStorage.GameData.LatestRoom.Value == 96 or game.ReplicatedStorage.GameData.LatestRoom.Value == 97 or game.ReplicatedStorage.GameData.LatestRoom.Value == 98 or game.ReplicatedStorage.GameData.LatestRoom.Value == 99 or game.ReplicatedStorage.GameData.LatestRoom.Value == 100 then
+ 
+entityModel = false
+ 
+end
+ 
+if entityModel then
+
+---====== Define spawner ======---
+ 
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/V1/Source.lua"))()
+ 
+---====== Create entity ======---
+ 
+local entity = Spawner.createEntity({
+    CustomName = "Smiler",
+    Model = "rbxassetid://16618965725",
+    Speed = 340,
+    MoveDelay = 5,
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 125,
+    SpawnInFront = false,
+    ShatterLights = true,
+    FlickerLights = {
+        Enabled = false,
+        Duration = 0
+    },
+    Cycles = {
+        Min = 10,
+        Max = 25,
+        Delay = 0.5
+    },
+    CamShake = {
+        Enabled = true,
+        Values = {1.5, 20, 0.1, 1},
+        Range = 100
+    },
+    ResistCrucifix = true,
+    BreakCrucifix = true
+})
+
+if game.ReplicatedStorage.GameData.Floor.Value == "Mines" or game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("HideLevel2") then
+
+entity.Config.Speed = 140
+
+elseif game.ReplicatedStorage.GameData.LatestRoom.Value == (80 or 81 or 82 or 83 or 84 or 85 or 86 or 87 or 88 or 89) then
+
+entity.Config.Speed = 260
+
+elseif game.ReplicatedStorage.GameData.LatestRoom.Value == (80 or 81 or 82 or 83 or 84 or 85 or 86 or 87 or 88 or 89) and game.ReplicatedStorage:WaitForChild("LiveModifiers"):FindFirstChild("HideLevel2") then
+
+entity.Config.Speed = 120
+
+end
+
+---====== Debug ======---
+ 
+entity.Debug.OnEntitySpawned = function()
+    print("Entity has spawned")
+local CameraShaker = require(game.ReplicatedStorage.CameraShaker)
+local camara = workspace.CurrentCamera
+local camShake = CameraShaker.new(Enum.RenderPriority.Camera.Value, function(Cf)
+	camara.CFrame = camara.CFrame * Cf
+end)
+camShake:Start()
+camShake:Shake(CameraShaker.Presets.Earthquake)
+wait(0.001)
+require(game.ReplicatedStorage.RemotesFolder.RequestAsset:InvokeServer("Earthquake"))(require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game), workspace.CurrentRooms)
+end
+ 
+entity.Debug.OnEntityDespawned = function()
+    print("Entity has despawned")
+---====== Load achievement giver ======---
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+ 
+---====== Display achievement ======---
+achievementGiver({
+    Title = "Too Fastly",
+    Desc = "Look and listen, I'll be right behind you soon",
+    Reason = "Encounter Smiler",
+    Image = "rbxassetid://10857485763"
+})
+end
+ 
+entity.Debug.OnEntityStartMoving = function()
+    print("Entity started moving")
+end
+ 
+entity.Debug.OnEntityEnteredRoom = function(room)
+    print("Entity entered room:", room)
+end
+ 
+entity.Debug.OnLookAtEntity = function()
+    print("Player looking at entity")
+end
+ 
+entity.Debug.OnDeath = function()
+    print("Player has died")
+firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"You died to Smiler", "He's pretty very faster", "Try to hide many times!"}, "Blue") -- "Blue" or "Yellow"
+end
+ 
+--[[
+    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+ 
+    entity.Debug.OnUseCrucifix = function()
+        print("Custom crucifixion script here")
+    end
+]]--
+ 
+---====== Run entity ======---
+ 
+Spawner.runEntity(entity)
+
+end 
