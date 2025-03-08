@@ -1,0 +1,101 @@
+local cue2 = Instance.new("Sound")
+	cue2.Parent = game.Workspace
+	cue2.Name = "Spawn"
+	cue2.SoundId = "rbxassetid://8627516764"
+	cue2.Volume = 1
+	cue2.PlaybackSpeed = 1
+	cue2:Play()
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(0, 100, 255)
+game.Lighting.MainColorCorrection.Contrast = 5
+local tween = game:GetService("TweenService")
+tween:Create(game.Lighting.MainColorCorrection, TweenInfo.new(2.5), {Contrast = 0}):Play()
+local TweenService = game:GetService("TweenService")
+local TW = TweenService:Create(game.Lighting.MainColorCorrection, TweenInfo.new(5),{TintColor = Color3.fromRGB(255, 255, 255)})
+TW:Play()
+wait(0.0001)
+---====== Define spawner ======---
+ 
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/V1/Source.lua"))()
+ 
+---====== Create entity ======---
+ 
+local entity = Spawner.createEntity({
+    CustomName = "Depth",
+    Model = "rbxassetid://13296774233",
+    Speed = 700,
+    MoveDelay = 5,
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 125,
+    SpawnInFront = false,
+    ShatterLights = true,
+    FlickerLights = {
+        Enabled = false,
+        Duration = 0
+    },
+    Cycles = {
+        Min = 5,
+        Max = 7,
+        Delay = 2.5
+    },
+    CamShake = {
+        Enabled = true,
+        Values = {1.5, 20, 0.1, 1},
+        Range = 100
+    },
+    ResistCrucifix = false,
+    BreakCrucifix = true
+})
+ 
+---====== Debug ======---
+ 
+entity.Debug.OnEntitySpawned = function()
+    print("Entity has spawned")
+end
+ 
+entity.Debug.OnEntityDespawned = function()
+    print("Entity has despawned")
+---====== Load achievement giver ======---
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+ 
+---====== Display achievement ======---
+achievementGiver({
+    Title = "Too Depths",
+    Desc = "Careful, I'll walk here",
+    Reason = "Encounter Depth",
+    Image = "rbxassetid://12482826636"
+})
+end
+ 
+entity.Debug.OnEntityStartMoving = function()
+    print("Entity started moving")
+end
+ 
+entity.Debug.OnEntityFinishedRebound = function()
+    print("Entity finished rebound")
+end
+ 
+entity.Debug.OnEntityEnteredRoom = function(room)
+    print("Entity entered room:", room)
+end
+ 
+entity.Debug.OnLookAtEntity = function()
+    print("Player looking at entity")
+end
+ 
+entity.Debug.OnDeath = function()
+    print("Player has died")
+firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"You died to Depth", "It's occasionally appear at room chance", "He will come back many times, so hide until not safe..."}, "Blue") -- "Blue" or "Yellow"
+end
+ 
+--[[
+    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+ 
+    entity.Debug.OnUseCrucifix = function()
+        print("Custom crucifixion script here")
+    end
+]]--
+ 
+---====== Run entity ======---
+ 
+Spawner.runEntity(entity)
