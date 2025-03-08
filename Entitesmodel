@@ -1,0 +1,127 @@
+local entityModel = true
+
+if game.Workspace:FindFirstChild("SeekMovingNewClone") or game.ReplicatedStorage.GameData.LatestRoom.Value == 50 or game.ReplicatedStorage.GameData.LatestRoom.Value == 51 or game.ReplicatedStorage.GameData.LatestRoom.Value == 52 or workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets:FindFirstChild("ShopProps") then
+
+entityModel = false
+
+end
+
+if entityModel then
+
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(212, 255, 212)
+game.Lighting.MainColorCorrection.Contrast = 0.3
+local tween = game:GetService("TweenService")
+tween:Create(game.Lighting.MainColorCorrection, TweenInfo.new(0.5), {Contrast = 0}):Play()
+local TweenService = game:GetService("TweenService")
+local TW = TweenService:Create(game.Lighting.MainColorCorrection, TweenInfo.new(0.5),{TintColor = Color3.fromRGB(255, 255, 255)})
+TW:Play()
+    local roast = Instance.new("Sound")
+    roast.Parent = workspace
+    roast.Name = "roast"
+    roast.SoundId = "rbxassetid://9125936117"
+    roast.Volume = 0.5
+    roast.Pitch = 3
+    roast:Play()
+    wait(0.6)
+    roast:Destroy()
+wait(0.001)
+---====== Define spawner ======---
+ 
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/V1/Source.lua"))()
+ 
+---====== Create entity ======---
+ 
+local entity = Spawner.createEntity({
+    CustomName = "Matcher",
+    Model = "rbxassetid://12705324154",
+    Speed = 125,
+    MoveDelay = 2,
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 50,
+    SpawnInFront = false,
+    ShatterLights = true,
+    FlickerLights = {
+        Enabled = false,
+        Duration = 0
+    },
+    Cycles = {
+        Min = 1,
+        Max = 1.5,
+        Delay = 2
+    },
+    CamShake = {
+        Enabled = true,
+        Values = {1.5, 20, 0.1, 1},
+        Range = 100
+    },
+    ResistCrucifix = false,
+    BreakCrucifix = true
+})
+
+---====== Debug ======---
+ 
+entity.Debug.OnEntitySpawned = function()
+    print("Entity has spawned")
+end
+ 
+entity.Debug.OnEntityDespawned = function()
+    print("Entity has despawned")
+---====== Load achievement giver ======---
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+ 
+---====== Display achievement ======---
+achievementGiver({
+    Title = "Fair Match",
+    Desc = "Hi",
+    Reason = "Encounter Matcher",
+    Image = "rbxassetid://104129183809839"
+})
+end
+ 
+entity.Debug.OnEntityStartMoving = function()
+    print("Entity started moving")
+end
+ 
+entity.Debug.OnEntityFinishedRebound = function()
+    print("Entity finished rebound")
+end
+ 
+entity.Debug.OnEntityEnteredRoom = function(room)
+    print("Entity entered room:", room)
+end
+ 
+entity.Debug.OnLookAtEntity = function()
+    print("Player looking at entity")
+end
+ 
+entity.Debug.OnDeath = function()
+    print("Player has died")
+local jumpscare = loadstring(game:HttpGet("https://raw.githubusercontent.com/munciseek/NIDO-HUD//main/Custom-jumpscare/Source"))()
+local JS = jumpscare.Create({
+    image = {
+        Asset = "rbxassetid://104129183809839"
+    },
+    Audio = {
+        Asset = "rbxassetid://0",
+        AC = false
+    }
+})
+JS:Run()
+wait(0.001)
+firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"You died to Matcher", "Running will not help, try hiding when you know it's near", "Pay attention for cues that hint it's arrival"}, "Blue") -- "Blue" or "Yellow"
+end
+ 
+--[[
+    NOTE: By overwriting 'OnUseCrucifix', the default crucifixion will be ignored and this function will be called instead
+ 
+    entity.Debug.OnUseCrucifix = function()
+        print("Custom crucifixion script here")
+    end
+]]--
+ 
+---====== Run entity ======---
+ 
+Spawner.runEntity(entity)
+
+end
