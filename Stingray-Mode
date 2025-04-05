@@ -1,0 +1,34 @@
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Made by anzor and chatGPT",true)
+game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+wait(1)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("stingray mode",true)
+wait(3)
+
+-- Smiley 
+coroutine.wrap(function()
+    while true do
+        wait(math.random(50,700))
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(9)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Smiley'))()
+    end
+end)()
+
+-- Pipsqueak
+coroutine.wrap(function()
+    while true do
+        wait(math.random(37,120))
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(4)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Pipsqueak'))()
+    end
+end)()
+-- Abyss 
+coroutine.wrap(function()
+    while true do
+        wait(320)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(2)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Abyss'))()
+    end
+end)()
