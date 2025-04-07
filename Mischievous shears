@@ -1,0 +1,71 @@
+local function modifyShearsTool(tool)
+    for _, descendant in ipairs(tool:GetDescendants()) do
+        if descendant:IsA("BasePart") then
+            descendant.Color = Color3.fromRGB(255, 0, 0)
+            descendant.Material = Enum.Material.Neon
+        elseif descendant:IsA("ParticleEmitter") and descendant.Name == "DustEmitter" then
+            descendant.Color = ColorSequence.new(Color3.fromRGB(255, 0, 0))
+        else
+            local dustEmitter = descendant:FindFirstChild("DustEmitter")
+            if not dustEmitter then
+                dustEmitter = Instance.new("ParticleEmitter")
+                dustEmitter.Name = "DustEmitter"
+                dustEmitter.Texture = "rbxassetid://110886007258155"
+                dustEmitter.Rate = 50
+                dustEmitter.Lifetime = NumberRange.new(1, 2)
+                dustEmitter.Speed = NumberRange.new(0.5, 1.5)
+                dustEmitter.Size = NumberSequence.new(0.5)
+                dustEmitter.Color = ColorSequence.new(Color3.fromRGB(255, 0, 0))
+                dustEmitter.Parent = descendant
+            end
+        end
+    end
+    if tool:IsA("Tool") then
+        tool.TextureId = "rbxassetid://104159874206783"
+    end
+end
+
+local function startDeathTimer()
+    local character = game.Players.LocalPlayer.Character
+    local humanoid = character and character:FindFirstChild("Humanoid")
+    if humanoid then
+        spawn(function()
+            wait(30)
+            if game.Players.LocalPlayer.Backpack:FindFirstChild("Shears") and not character:FindFirstChild("Shears") then
+                humanoid:TakeDamage(190)
+                if humanoid.Health <= 0 then
+                    if game.ReplicatedStorage:FindFirstChild("GameStats") then
+                        local playerStats = game.ReplicatedStorage.GameStats:FindFirstChild("Player_"..game.Players.LocalPlayer.Name)
+                        if playerStats then
+                            playerStats.Total.DeathCause.Value = "Mischievous Shears"
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end
+
+local function monitorToolRemoval()
+    game.Players.LocalPlayer.Backpack.ChildAdded:Connect(function(child)
+        if child.Name == "Shears" then
+            startDeathTimer()
+        end
+    end)
+end
+
+local function onToolAdded(tool)
+    if tool.Name == "Shears" then
+        modifyShearsTool(tool)
+    end
+end
+
+game.Players.LocalPlayer.Backpack.ChildAdded:Connect(onToolAdded)
+
+monitorToolRemoval()
+
+for _, tool in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    if tool.Name == "Shears" then
+        modifyShearsTool(tool)
+    end
+end
