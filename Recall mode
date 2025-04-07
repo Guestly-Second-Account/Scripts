@@ -1,0 +1,56 @@
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Recall Mode Executed ",true)
+wait(2) require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Test Version (DISCORD SERVER:https://discord.gg/tn7meuE8g5)",true)
+
+--Cave ambience
+local sound = Instance.new("Sound")
+
+sound.SoundId = "rbxassetid://273398061"
+
+sound.Volume = 1
+
+sound.Looped = true
+
+sound:Play()
+
+sound.Parent = workspace
+
+-- Door Floor 2 
+coroutine.wrap(function()
+    while true do
+        wait(0.0005)
+workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Door.Door.Open.SoundId = "rbxassetid://833871080"
+workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("Door"):FindFirstChild("Door").Material = "Basalt"
+workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("Door"):FindFirstChild("Door"):FindFirstChild("Sign").Material = "Basalt"
+    end
+end)()
+
+-- new fog
+local Lighting = game:GetService("Lighting")
+Lighting.Ambient = Color3.new(255, 0, 0)
+Lighting.Brightness = 0.1
+Lighting.FogEnd = 50
+Lighting.FogStart = 35
+Lighting.FogColor = Color3.new(255, 0, 0)
+
+-- a-185
+coroutine.wrap(function()
+    while true do
+        wait(122)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+loadstring(game:HttpGet("https://pastebin.com/raw/aTy1kLpd"))()
+    end
+    
+end)()
+
+-- Depth
+coroutine.wrap(function()
+    while true do
+        wait(89)
+        game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
+        wait(0)
+loadstring(game:HttpGet('https://pastefy.app/JztYAL4m/raw'))()
+
+end
+
+end)()
