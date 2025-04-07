@@ -1,0 +1,133 @@
+local Tool = game:GetObjects("rbxassetid://76998344598630")[1]
+Tool.Parent = game.Players.LocalPlayer.Backpack
+
+local AnimationsFolder = Tool.Animations
+local Hold = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(AnimationsFolder.idle)
+
+local mouse = game.Players.LocalPlayer:GetMouse()
+local uis = game:GetService("UserInputService")
+
+local Player = game.Players.LocalPlayer
+local Humanoid = Player.Character:WaitForChild("Humanoid")
+
+local Equipped = false
+
+
+uis.InputBegan:Connect(function(i,a)
+    if i.KeyCode == Enum.KeyCode.Q then
+        if mouse.Target.Parent.ClassName == "Model" then
+            local target = mouse.Target
+
+
+            local highlight = Instance.new("Highlight")
+            highlight.FillTransparency = 1
+            highlight.OutlineTransparency = 1
+            highlight.Parent = target.Parent
+            highlight.FillColor = Color3.new(1, 0.321569, 0.333333)
+
+            target.Anchored = true
+
+            local sound = Instance.new("Sound", game.Workspace)
+            sound.Parent = target
+            sound.SoundId = "rbxassetid://6555668806"
+            sound:Play()
+
+            local light = Instance.new("PointLight", target)
+            light.Brightness = 10
+            light.Color = Color3.new(1, 0.458824, 0.466667)
+            light.Range = 0
+            local particle = Instance.new("ParticleEmitter", target)
+            particle.Size =  NumberSequence.new(4, 4)
+            particle.Speed = NumberRange.new(0,0)
+            particle.Rate = 0
+            particle.Texture = "http://www.roblox.com/asset/?id=74062787660956"
+            particle.Lifetime = NumberRange.new(0.02,0.02)
+            for i = 1,50 do
+                wait()
+                particle.Rate += 5
+            end
+            local number = 00.1
+
+            local sound2 = Instance.new("Sound", target)
+            sound2.Parent = target
+            sound2.SoundId = "rbxassetid://8663054927"
+            sound2.Looped = true
+
+            sound2:Play()
+
+            for i = 1,100 do
+                wait()
+                light.Range += 0.1
+                number += 0.01
+                sound2.PlaybackSpeed += 0.1
+                target.CFrame = target.CFrame * CFrame.new(0, 0, 0) * CFrame.fromEulerAnglesXYZ(0,number, 0) --mess around with these numbers if you want
+            end
+            sound2:Stop()
+            local fullentity = target.Parent:GetChildren()
+
+            for i,v in ipairs(fullentity)  do
+                if v.ClassName == "MeshPart" then
+                    v.Anchored = false
+                end
+
+                for i,v in ipairs(fullentity)  do
+                    if v.ClassName == "Humanoid" then
+                        v.Health = 0
+                    end
+                end
+
+                for i,v in ipairs(fullentity)  do
+                    if v.ClassName == "Motor6D" then
+                        v:Destroy()
+                    end
+                end
+
+                local explode = Instance.new("Explosion", game.Workspace)
+                explode.Position = target.Position
+                local sound = Instance.new("Sound", target)
+                sound.SoundId = "rbxassetid://5564340326"
+                sound:Play()
+                local part = Instance.new("Part", game.Workspace)
+                part.Transparency = 1
+                part.CFrame = target.CFrame
+
+                particle.Enabled = false
+                light:Destroy()
+                highlight:Destroy()
+
+                local entity = target.Parent:GetChildren()
+                for i,v in ipairs(entity) do
+                    wait()
+                    if v.ClassName == "MeshPart" then
+                        for i = 1,10 do
+                            wait()
+                            v.Transparency += 0.1
+                        end
+                    end
+
+                    wait(0.1)
+                    target.Parent:Destroy()
+                end
+            end
+        end
+    end
+end)
+local AnimationsFolder = Tool.Animations
+
+AnimationsFolder.idle.AnimationId = "rbxassetid://10479585177"
+AnimationsFolder.shake.AnimationId = "rbxassetid://12001275923"
+
+
+
+local Hold = Humanoid:LoadAnimation(AnimationsFolder.idle)
+Shake = Humanoid:LoadAnimation(AnimationsFolder.shake)
+
+Tool.Equipped:Connect(function()
+    Equipped = true
+    Hold:Play()
+end)
+
+Tool.Unequipped:Connect(function()
+    Equipped = false
+    Hold:Stop()
+end)
