@@ -45,4 +45,4 @@ local function caption(text)
 		newText:Destroy()
 	end)
 end
-caption("Credits To Alot Of People (I Can't Say Them All")
+caption("Credits To Alot Of People (I Can't Say Them All)")
