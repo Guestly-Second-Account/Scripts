@@ -1,0 +1,48 @@
+local GUI = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local MainGui = GUI:FindFirstChild("MainUI")
+
+--captions 
+
+local newCaptionsFolder = nil
+
+
+
+if not MainGui.MainFrame:FindFirstChild("CaptionsCreated") then
+	newCaptionsFolder = Instance.new("Folder",MainGui.MainFrame)
+	newCaptionsFolder.Name = "CaptionsCreated"
+else
+	newCaptionsFolder = MainGui.MainFrame.CaptionsCreated
+end
+
+
+local function caption(text)
+	if not MainGui.MainFrame.Caption:FindFirstChild("Sound") then
+		local newSound = nil
+		if not MainGui:FindFirstChild("Initiator") then
+			newSound = Instance.new("Sound")
+		else
+			newSound = MainGui.Initiator.Main_Game.Reminder.Caption:Clone()
+		end
+		newSound.Parent = MainGui.MainFrame.Caption
+		newSound.Name = "Sound"
+	end
+	local newText = MainGui.MainFrame.Caption:Clone()
+	MainGui.MainFrame.Caption:FindFirstChild("Sound"):Play()
+	for _, Caption in pairs(newCaptionsFolder:GetChildren()) do
+		Caption.Visible = false
+	end
+	newText.Parent = newCaptionsFolder
+	newText.Text = text
+	newText.Visible = true
+	spawn(function()
+		wait(7)
+		game:GetService("TweenService"):Create(newText,TweenInfo.new(2,Enum.EasingStyle.Linear,Enum.EasingDirection.Out),
+			{
+				TextTransparency = 1,
+				TextStrokeTransparency = 1
+			}):Play()
+		wait(3)
+		newText:Destroy()
+	end)
+end
+caption("Survival Mode Actived!")
