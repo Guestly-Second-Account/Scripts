@@ -1,0 +1,1223 @@
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ffe900'>[Script Loading]: 💫Wait For The Hub💫.</font>")
+
+---====== Load achievement giver ======---
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+---====== Display achievement ======---
+achievementGiver({
+    Title = "🚪Pinki/Guest Doors Hub🚪",
+    Desc = "Hope U Enjoy It!🤑",
+    Reason = "Executed Our Doors Hub",
+    Image = "rbxassetid://119038370703174"
+})
+
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(255, 130, 5)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("🚪Welcome To DOORS Hub🚪",true)
+wait(2)
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(5, 255, 255)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Credits To Guest And Pinki For The Hub",true)
+wait(2)
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(174, 33, 255)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Credits To Alot Of People For The Scripts (I Can't Say Them All)",true)
+wait(2)
+local caption = game.Players.LocalPlayer:WaitForChild("PlayerGui").MainUI.MainFrame.Caption
+caption.TextColor3 = Color3.fromRGB(3, 255, 11)
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Enjoy The Script!",true)
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/Librarykavoui"))()
+local Window = Library.CreateLib("🌏Doors Hub made by Pinki/Guest💯", "Serpent")
+local Tab = Window:NewTab("🔪Modes🔪")
+local Section = Tab:NewSection("All of Modes")
+Section:NewButton("Ransom Mode", "Nothing Here", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#6600ff'>[Ransom Mode]: 😈Script Succesfully Executed😈.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Ransom-Mode"))()
+    print("Clicked")
+end)
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "ScreenGui"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+ 
+local Toggle = Instance.new("TextButton")
+Toggle.Name = "Toggle"
+Toggle.Parent = ScreenGui
+Toggle.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Toggle.Position = UDim2.new(0, 0, 0.454706937, 0)
+Toggle.Size = UDim2.new(0, 90, 0, 38)
+Toggle.Font = Enum.Font.SourceSans
+Toggle.Text = "Toggle"
+Toggle.TextColor3 = Color3.fromRGB(248, 248, 248)
+Toggle.TextSize = 28.000
+Toggle.Draggable = true
+Toggle.MouseButton1Click:connect(function()
+    Library:ToggleUI()
+end)
+ 
+local Corner = Instance.new("UICorner")
+Corner.Name = "Corner"
+Corner.Parent = Toggle
+Section:NewButton("Combined Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ff7f00'>[Combined Mode]: 💥Script Succesfully Executed💥.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Combined-Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Hardcore Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ff1500'>[Hardcore Mode]: 🤬Script Succesfully Executed🤬.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DripCapybara/Doors-Mode-Remakes/refs/heads/main/HardcoreFixed.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Mayhem Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#00c7ff'>[Mayhem Mode]: 🥶Script Succesfully Executed🥶.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Mayhem%20mode%20recreate/Code"))()
+    print("Clicked")
+end)
+Section:NewButton("Impossible Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#bfbfbf'>[Impossible Mode]: 💀Script Succesfully Executed💀.</font>")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Ukazix/impossible-mode/main/Protected_79.lua.txt'))()
+    print("Clicked")
+end)
+Section:NewButton("Impossible Mode (Recreate)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#9a9a9a'>[Impossible Mode (Recreate)]: ☠️Script Succesfully Executed☠️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Impossible%20Mode%20Recreate"))()
+    print("Clicked")
+end)
+Section:NewButton("Horror Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#000000'>[Horror Mode]: ⚫️Script Succesfully Executed⚫️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAcceleration/Comet-Development/refs/heads/main/Doors/Game/Horror.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Hard Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ffe500'>[Hard Mode]: 😠Script Succesfully Executed😠.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FenzerPlayerPressure/Doors-Hard-Mode/refs/heads/main/Doors%20Hard%20Mode%20Update%20Fixed.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Laver Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#00ff9d'>[Laver Mode]: 👽Script Succesfully Executed👽.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/J63633S/Laver-mode/refs/heads/main/Main%20script"))()
+    print("Clicked")
+end)
+Section:NewButton("Immersive Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#f40400'>[Immersive Mode]: 💢Script Succesfully Executed💢.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Immersive%20mode/Main%20Script"))()
+    print("Clicked")
+end)
+Section:NewButton("Terror Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#006ef4'>[Terror Mode]: 😱Script Succesfully Executed😱.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teilsthebfdifan/Modhub-assets/refs/heads/main/TerrorModeOBF.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Arrogant Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#00cff4'>[Arrogant Mode]: 💦Script Succesfully Executed💦.</font>")
+loadstring(game:HttpGet('https://pastefy.app/YAx1dSmY/raw'))() 
+    print("Clicked")
+end)
+Section:NewButton("Furry Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ff43fb'>[Furry Mode]: 🐱Script Succesfully Executed🐱.</font>")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/RBXDM/SCRMODE/refs/heads/main/Furry'))()
+    print("Clicked")
+end)
+Section:NewButton("Creepy Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ffffff'>[Creepy Mode]: 👻Script Succesfully Executed👻.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DripCapybara/Doors-Modes/refs/heads/main/CreepyMode/ObfuscatedMain.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Distorted Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#202267'>[Distorted Mode]: 🌐Script Succesfully Executed🌐.</font>")
+loadstring(game:HttpGet("https://pastefy.app/jSYoQ45C/raw"))()
+    print("Clicked")
+end)
+Section:NewButton("Endless Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ff271c'>[Endless Mode]: ❗️Script Succesfully Executed❗️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DripCapybara/Doors-Mode-Remakes/refs/heads/main/EndlessMode.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Very Hard Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#b90900'>[Very Hard Mode]: 😡Script Succesfully Executed😡.</font>")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Anzor5458/Very-hard-mode/refs/heads/main/Fix'))()
+    print("Clicked")
+end)
+Section:NewButton("Unpleasant Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#e8b637'>[Unpleasant Mode]: 🤔Script Succesfully Executed🤔.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Anzor5458/Unpleasant-Mode/refs/heads/main/Anzor"))()
+    print("Clicked")
+end)
+Section:NewButton("Creepy Mode (Old)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#0094ff'>[Creepy Mode (Old)]: 😨Script Succesfully Executed😨.</font>")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Anzor5458/Mode/refs/heads/main/Creepy%20mode'))()
+    print("Clicked")
+end)
+Section:NewButton("Glitched Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ba00ff'>[Glitched Mode]: 🔮Script Succesfully Executed🔮.</font>")
+_G.GlitchReplace = {
+    GlitchRush = true,
+    GlitchAmbush = true,
+    GlitchScreech = true,
+    GlitchHalt = true,
+    GlitchUIStuff = true
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teilsthebfdifan/suggested/refs/heads/main/GlitchThings"))()
+    print("Clicked")
+end)
+Section:NewButton("Forgotten Mode (Old)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#bdbdbd'>[Forgotten Mode]: 🕟Script Succesfully Executed🕟.</font>")
+loadstring(game:HttpGet('https://raw.githubusercontent.com/RBXDM/SCRMODE/refs/heads/main/Forgotten'))()
+    print("Clicked")
+end)
+Section:NewButton("Nightmare Mode (Still In Progress)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#0f00c4'>[Nightmare Mode (Still In Progress)]: 👾Script Succesfully Executed👾.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/Nightmare%20Mode/Nightmare%20Mode.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Grace Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ffe869'>[Grace Mode]: 🌟Script Succesfully Executed🌟.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/IdkMyNameLoll/PublicScripts/refs/heads/main/GraceEntitiesScript"))()
+    print("Clicked")
+end)
+Section:NewButton("Christmas Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#7dff69'>[Chrismast Mode]: 🎄Script Succesfully Executed🎄.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Idk-lol2/xmasmode/refs/heads/main/xmasmode.txt"))()
+    print("Clicked")
+end)
+Section:NewButton("Fragmented Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#d400ff'>[Fragmented Mode]: 🌌Script Succesfully Executed🌌.</font>")
+loadstring(game:HttpGet("https://gist.githubusercontent.com/FenzerPlayerPressure/4c0ad2902843b58fe2d0aa9825152d99/raw/230b823539fc98cd2d3a98b438fb05c330ab3915/Doors%2520Fragmented%2520Mode%2520V4%2520Revived"))()
+    print("Clicked")
+end)
+Section:NewButton("Extreme Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#7c0200'>[Extreme Mode]: 👺Script Succesfully Executed👺.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/SCRMODE/refs/heads/main/Extreme"))()
+    print("Clicked")
+end)
+Section:NewButton("Dark Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#292929'>[Dark Mode]: 🕳Script Succesfully Executed🕳.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/SCRMODE/refs/heads/main/Dark"))()
+    print("Clicked")
+end)
+Section:NewButton("Nightmare Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#474747'>[Nightmare Mode]: 💣Script Succesfully Executed💣.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/SCRMODE/refs/heads/main/Nightmare"))()
+    print("Clicked")
+end)
+Section:NewButton("Limit Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ff8800'>[Limit Mode]: 😵‍💫Script Succesfully Executed😵‍💫.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/SCRMODE/refs/heads/main/limit"))()
+    print("Clicked")
+end)
+Section:NewButton("Psychotic Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#7cfffc'>[Psychotic Mode]: 😓Script Succesfully Executed😓.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/SCRMODE/refs/heads/main/Psychotic"))()
+    print("Clicked")
+end)
+Section:NewButton("Hazy Mode (Super Hard Mode Only)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#4c00ff'>[Hazy Mode]: 😰Script Succesfully Executed😰.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/SCRMODE/refs/heads/main/Hazy"))()
+    print("Clicked")
+end)
+Section:NewButton("Chaotic Mode (Chaos + Recall)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#b08eff'>[Chaotic Mode]: 🤕Script Succesfully Executed🤕.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/ScrtptsMode/refs/heads/main/Inventory/Mode/Chaos-Recall"))()
+    print("Clicked")
+end)
+Section:NewButton("Hardcore Mode (Remake)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#8c0000'>[Hardcore Mode (Remake)]: 🚫Script Succesfully Executed🚫.</font>")
+loadstring(game:HttpGet("https://glot.io/snippets/gp5pu59o7f/raw"))()
+    print("Clicked")
+end)
+Section:NewButton("Darkness Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#666666'>[Darkness Mode]: ✖️Script Succesfully Executed✖️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Darkness%20Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Forgotten Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#e1e1e1'>[Forgotten Mode]: ☁️Script Succesfully Executed☁️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Modes/refs/heads/main/Forgotten%20Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Superiority Mode (Made By Me)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#0c00ff'>[Superiority Mode]: 🔵Script Succesfully Executed🔵.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Superiority%20Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Endless Mode (New)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ffbf00'>[Endless Mode (New)]: ☢️Script Succesfully Executed☢️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Endless%20Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Multiverse Rooms Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ffdc73'>[Multiverse Rooms Mode]:😶Script Succesfully Executed😶.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/MULTIVERS%20ROOM"))()
+    print("Clicked")
+end)
+Section:NewButton("Forbidden Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#3c9541'>[Forbidden Mode]:🤢Script Succesfully Executed🤢.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Forbidden%20Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Floor 2 Creatively Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ffa100'>[Floor 2 Creatively Mode]:🤯Script Succesfully Executed🤯.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Floor%202%20Creatively%20Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Astonishment Mode (Made By Me)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#b60000'>[Astonishment Mode]:⭕️Script Succesfully Executed⭕️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DoorsHubs/Doors-Hubs/refs/heads/main/Astonishment%20Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Stingray Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#4c884b'>[Stingray Mode]:💚Script Succesfully Executed💚.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Stingray-Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Frightening Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ff7200'>[Frightening Mode]:🤒Script Succesfully Executed🤒.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TynaRan/Decoder/refs/heads/main/Protected_6038689763652099.txt"))()
+    print("Clicked")
+end)
+Section:NewButton("Hardcore (Remastered)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#bebebe'>[Hardcore (Remastered) Mode]:❕️Script Succesfully Executed❕️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/daiayday/HardcoreRemastered/refs/heads/main/obf_L6zO2N0sG5ehDHd56JBc5z70TZ2piVOvIqsgE88741HXGrwv7E4qd6c8axu8z4oh.lua.txt"))()
+    print("Clicked")
+end)
+Section:NewButton("Malfunction Mode (Made By Me)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#212121'>[Malfunction Mode]:♠️Script Succesfully Executed♠️.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DoorsHubs/Doors-Hubs/refs/heads/main/Malfunction-Mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Madness Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#d000ff'>[Madness Mode]:🟣Script Succesfully Executed🟣.</font>")
+loadstring(game:HttpGet("https://glot.io/snippets/h67jtjs18s/raw/main.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Recall Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#00b6ff'>[Recall Mode]:🔄Script Succesfully Executed🔄.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Recall%20mode"))()
+    print("Clicked")
+end)
+Section:NewButton("Fear Mode (Super Hard Mode Only)", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#dfd86d'>[Fear Mode]:🥲Script Succesfully Executed🥲.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/cool59572/freestuff/main/Fear_mode_multiplayer.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Super Ultra Mega Unfair Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#ffc300'>[Super Ultra Mega Unfair Mode]:🫤Script Succesfully Executed🫤.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/FenzerPlayerPressure/SubVersions/refs/heads/main/Super%20Ultra%20Mega%20Unfair%20Mode%20Small%20Update.Lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Birthday Mode", "ButtonInfo", function()
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#a900ff'>[Birthday Mode]:🎉Script Succesfully Executed🎉.</font>")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/ScrtptsMode/refs/heads/main/Inventory/Mode/Birthday"))()
+    print("Clicked")
+end)
+local Tab = Window:NewTab("✨️Custom Items✨️")
+local Section = Tab:NewSection("All of Custom Items")
+Section:NewButton("Crucifix On Anything (Q to use)", "ButtonInfo", function()
+_G.Uses = 414141414141
+_G.Range = 30
+_G.OnAnything = true
+_G.Fail = false
+_G.Variant = "Electric"
+loadstring(game:HttpGet('https://raw.githubusercontent.com/PenguinManiack/Crucifix/main/Crucifix.lua'))()
+    print("Clicked")
+end)
+Section:NewButton("Scanner", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/Scripts/main/Scanner.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Seek Gun", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/Scripts/main/seekgun.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Black Hole", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iimateiYT/Scripts/main/Black%20Hole.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Grass Tablet", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Matthew201322/Doors-Scriptee/refs/heads/main/grass%20tablet.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Screech Plushie", "ButtonInfo", function()
+local Tool = game:GetObjects("rbxassetid://12982102335")[1]
+local Humanoid = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+
+Tool.Parent = game.Players.LocalPlayer.Backpack
+
+Tool.Equipped:Connect(function()
+    local Idle = Tool.Animations.idle
+    local IdleTrack = Humanoid:LoadAnimation(Idle)
+
+    IdleTrack:Play()
+end)
+Tool.Unequipped:Connect(function()
+    for _,anim in pairs(Humanoid.Animator:GetPlayingAnimationTracks()) do
+        anim:Stop()
+    end
+end)
+    print("Clicked")
+end)
+Section:NewButton("Glitch Tablet", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Agadigas/Doors/refs/heads/main/Glitched%20Scanner%20by%20Custom%20Doors"))()
+    print("Clicked")
+end)
+Section:NewButton("Magnet", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/MagnetByNerd.lua", true))()
+    print("Clicked")
+end)
+Section:NewButton("Shears On Anything", "ButtonInfo", function()
+-- Spawner Customizations --
+_G.Luck = 100 -- The chance of shears spawning in the game
+_G.Spawns = false -- If the shears can spawn naturally in the game
+-- Tool Customizations --
+_G.Durability = 5 -- How much durability it will have until it breaks
+_G.MaxDurability = 5 -- The max durability if you enable regeneration
+_G.InfiniteUses = false -- If The Shears have infinite uses and cannot break
+_G.DurabilityTakenEachSnip = 0.25 -- How much each snip you take with the shears takes from the durability
+_G.SnipSpeed = 1.25 -- The speed of the snipping
+-- Regeneration --
+_G.Regens = true -- If the shears regenerate after being used
+_G.RegenSpeed = 1 -- How fast the shears will regenerate after being used
+_G.RegenAmount = 0.1 -- How much durability it will regenerate after the chosen amount of time
+-- Loadstring --
+loadstring(game:HttpGet("https://raw.githubusercontent.com/iimateiYT/Scripts/main/Buffed%20Shears%20On%20Everything.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Moonlight Bottle", "ButtonInfo", function()
+loadstring(game:HttpGet('https://gist.githubusercontent.com/IdkMyNameLoll/04d7dd5e02688624b958b8c2604b924c/raw/9e86b34249f44ed2dd433176e67daaf3db30cde8/MoonBottle'))()
+    print("Clicked")
+end)
+Section:NewButton("Spirallight Bottle", "ButtonInfo", function()
+loadstring(game:HttpGet('https://gist.githubusercontent.com/IdkMyNameLoll/8b05c837bea9effac2554340465b4be1/raw/3f3be0ee72e7f153db39a16a40fa63dce6cde72d/SpiralBottle'))()
+    print("Clicked")
+end)
+Section:NewButton("Starlight Barrel", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/Scripts/refs/heads/main/StarJug.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Golden Gummy Flashlight", "ButtonInfo", function()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/aadyian9000/the-thing/main/GoldenGummyFlashlight.lua"),true))()
+    print("Clicked")
+end)
+Section:NewButton("Shakelights", "ButtonInfo", function()
+local Curious = 'https://github.com/Matthew201322/Doors-Scriptee/blob/Shakelights/Curious%20Shakelight.rbxm?raw=true'
+local Grassful_Flashlight = 'https://github.com/Matthew201322/Doors-Scriptee/blob/Shakelights/Grassful%20Flashlight.rbxm?raw=true'
+local Grassful_Shakelight = 'https://github.com/Matthew201322/Doors-Scriptee/blob/Shakelights/Grassful%20Shakelight.rbxm?raw=true'
+local Guiding = 'https://github.com/Matthew201322/Doors-Scriptee/blob/main/Guiding%20Shakelight.rbxm?raw=true'
+local Mischievous = 'https://github.com/Matthew201322/Doors-Scriptee/blob/Shakelights/Mischievous%20Shakelight.rbxm?raw=true'
+local Wooden = 'https://github.com/Matthew201322/Doors-Scriptee/blob/Shakelights/Wooden%20Shakelight.rbxm?raw=true'
+
+-- the shakelights omg
+
+_G.Model = Guiding
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Matthew201322/Doors-Scriptee/refs/heads/main/Shakelight.luau", true))()
+    print("Clicked")
+end)
+Section:NewButton("Resizer Stick", "ButtonInfo", function()
+loadstring(game:HttpGet('https://gist.githubusercontent.com/IdkMyNameLoll/f0178af2301ca90c09895f10f3e7bd4b/raw/46899ccc3626f3485d85f990012f7ef37ae52e5e/resizerDoorsRemake'))()
+    print("Clicked")
+end)
+Section:NewButton("Gravity Gun", "ButtonInfo", function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Skibiditoiletscripts/e/refs/heads/main/gravity%20gun'),true))()
+    print("Clicked")
+end)
+Section:NewButton("Holy Grenade On Anything", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Modes/refs/heads/main/Holy%20Hand%20Grenade%20On%20Anything"))()
+    print("Clicked")
+end)
+Section:NewButton("Grenade On Anything", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Modes/refs/heads/main/Grenade%20On%20Anything"))()
+    print("Clicked")
+end)
+Section:NewButton("Seek Plushie", "ButtonInfo", function()
+local plr = game.Players.LocalPlayer
+local hum = plr.Character:WaitForChild("Humanoid")
+
+local plush = game:GetObjects("rbxassetid://13613269677")[1]
+plush.Parent = plr.Backpack
+local anim = hum:LoadAnimation(plush.A.Hold)
+
+plush.Equipped:Connect(function()
+  anim:Play()
+end)
+plush.Unequipped:Connect(function()
+  anim:Stop()
+end)
+
+plush.Activated:Connect(function()
+  plush.Toy:Play()
+end)
+    print("Clicked")
+end)
+Section:NewButton("Rocket Launcher", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/Scripts/main/rocketLauncher.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Pink Scanner", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Matthew201322/Doors-Scriptee/refs/heads/main/the%20tablet.luau"))()
+    print("Clicked")
+end)
+Section:NewButton("Golden Scanner", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Modes/refs/heads/main/Golden%20Scanner"))()
+    print("Clicked")
+end)
+Section:NewButton("M249", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hi822010/Extras-Gliese-Hub-Doors/refs/heads/main/M249"))()
+    print("Clicked")
+end)
+Section:NewButton("Mischievous Crucifix On Anything (Q to Use)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Mischievious%20Crucifix"))()
+    print("Clicked")
+end)
+Section:NewButton("Giggle Tool", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Giggle%20Tool"))()
+    print("Clicked")
+end)
+Section:NewButton("Night Vision", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Night%20Vision"))()
+    print("Clicked")
+end)
+Section:NewButton("Key Tracker", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Key%20Tracker"))()
+    print("Clicked")
+end)
+Section:NewButton("Guiding Light Candle", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAcceleration/Comet-Development/refs/heads/main/Doors/Assets/Storage/Candle.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Normal Plushie", "ButtonInfo", function()
+local plr = game.Players.LocalPlayer
+local hum = plr.Character:WaitForChild("Humanoid")
+
+local plush = game:GetObjects("rbxassetid://17172674896")[1]
+plush.Parent = plr.Backpack
+local anim = hum:LoadAnimation(plush.A.Hold)
+
+plush.Equipped:Connect(function()
+  anim:Play()
+end)
+plush.Unequipped:Connect(function()
+  anim:Stop()
+end)
+
+plush.Activated:Connect(function()
+  plush.Toy:Play()
+end)
+    print("Clicked")
+end)
+Section:NewButton("Rebound Plushie", "ButtonInfo", function()
+local plr = game.Players.LocalPlayer
+local hum = plr.Character:WaitForChild("Humanoid")
+
+local plush = game:GetObjects("rbxassetid://17161557883")[1]
+plush.Parent = plr.Backpack
+local anim = hum:LoadAnimation(plush.A.Hold)
+
+plush.Equipped:Connect(function()
+  anim:Play()
+end)
+plush.Unequipped:Connect(function()
+  anim:Stop()
+end)
+
+plush.Activated:Connect(function()
+  plush.Toy:Play()
+end)
+    print("Clicked")
+end)
+Section:NewButton("Dread Plushie", "ButtonInfo", function()
+local plr = game.Players.LocalPlayer
+local hum = plr.Character:WaitForChild("Humanoid")
+
+local plush = game:GetObjects("rbxassetid://17160678646")[1]
+plush.Parent = plr.Backpack
+local anim = hum:LoadAnimation(plush.A.Hold)
+
+plush.Equipped:Connect(function()
+  anim:Play()
+end)
+plush.Unequipped:Connect(function()
+  anim:Stop()
+end)
+
+plush.Activated:Connect(function()
+  plush.Toy:Play()
+end)
+    print("Clicked")
+end)
+Section:NewButton("Silence Plushie", "ButtonInfo", function()
+local plr = game.Players.LocalPlayer
+local hum = plr.Character:WaitForChild("Humanoid")
+
+local plush = game:GetObjects("rbxassetid://17170996845")[1]
+plush.Parent = plr.Backpack
+local anim = hum:LoadAnimation(plush.A.Hold)
+
+plush.Equipped:Connect(function()
+  anim:Play()
+end)
+plush.Unequipped:Connect(function()
+  anim:Stop()
+end)
+
+plush.Activated:Connect(function()
+  plush.Toy:Play()
+end)
+    print("Clicked")
+end)
+Section:NewButton("Baldi Plushie", "ButtonInfo", function()
+local rush = game:GetObjects("rbxassetid://130833332527414")[1]
+rush.Parent = game.Players.LocalPlayer.Backpack
+
+rush.Activated:Connect(function()
+local scream = Instance.new("Sound", workspace)
+scream.SoundId = "rbxassetid://3656290524"
+scream.Volume = 2
+scream:Play()
+end)
+
+require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game).caption("Plushie maded by shocker script's",true)
+    print("Clicked")
+end)
+Section:NewButton("Screech Tool", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/Items/Screech%20Tool.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Giggle Bottle", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/Items/Giggle%20Bottle.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Viridis Lighter (Need Lighter)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/Items/Viridis%20lighter.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Glitch Screech Plushie", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/glitchscreechplushie.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Mischievous Candle", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/mischievouscandle.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Curious Candle", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/curiouscandle.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Guiding Candle", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/guidingcandle.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Glitch Ambush Plushie", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/aroxambushplushie.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Glitch Rush Plushie", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/glitchrushplushie.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Banana Gun (Super Hard Mode Only)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MrNeRD0/Doors-Hack/main/BananaGunByNerd.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Eat Everything", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Agadigas/Doors/refs/heads/main/Revivelight%20Door%20protection%20BY%20CUSTOM%20DOORS"))()
+    print("Clicked")
+end)
+Section:NewButton("El Goblin Plushie", "ButtonInfo", function()
+local Players = game:GetService("Players")
+local Equipped = false
+local Plr = Players.LocalPlayer
+local Char = Plr.Character or Plr.CharacterAdded:Wait()
+local Hum = Char:WaitForChild("Humanoid")
+local Root = Char:WaitForChild("HumanoidRootPart")
+local RightArm = Char:WaitForChild("RightUpperArm")
+local LeftArm = Char:WaitForChild("LeftUpperArm")
+local RightC1 = RightArm.RightShoulder.C1
+local LeftC1 = LeftArm.LeftShoulder.C1
+local CustomShop = loadstring(game:HttpGet("https://raw.githubusercontent.com/MateiDaBest/Utilities/main/Doors/Custom%20Shop%20Items/Main.lua"))()
+local Goblino = game:GetObjects("rbxassetid://12856605563")[1]
+
+Goblino.Parent = game.Players.LocalPlayer.Backpack
+
+CustomShop.CreateItem({
+    Title = "El Goblino",
+    Desc = "Door 52",
+    Image = "https://cdn.discordapp.com/attachments/970078853127110677/1087774910706888824/12372522258.png",
+    Price = 52,
+    Stack = 1,
+})
+
+local function setupHands(tool)
+    tool.Equipped:Connect(function()
+        Equipped = true
+        Char:SetAttribute("Hiding", true)
+        for _, v in next, Hum:GetPlayingAnimationTracks() do
+            v:Stop()
+        end
+
+        RightArm.Name = "R_Arm"
+        LeftArm.Name = "L_Arm"
+
+        RightArm.RightShoulder.C1 = RightC1
+            * CFrame.Angles(math.rad(-90), math.rad(-10), 0)
+        LeftArm.LeftShoulder.C1 = LeftC1
+            * CFrame.new(-0.2, -0.4, -0.5)
+            * CFrame.Angles(math.rad(-110), math.rad(30), math.rad(0))    
+    end)
+
+    tool.Unequipped:Connect(function()
+        Equipped = false
+        Char:SetAttribute("Hiding", nil)
+        RightArm.Name = "RightUpperArm"
+        LeftArm.Name = "LeftUpperArm"
+
+        RightArm.RightShoulder.C1 = RightC1
+        LeftArm.LeftShoulder.C1 = LeftC1
+    end)
+end
+
+setupHands(Goblino)
+    print("Clicked")
+end)
+Section:NewButton("Jeff The Killer Plushie", "ButtonInfo", function()
+local tool = game:GetObjects("rbxassetid://13069619857")[1]
+tool.Parent = game.Players.LocalPlayer.Backpack
+    print("Clicked")
+end)
+Section:NewButton("Mischievous Lighter (Need Lighter)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Mischievous%20Lighter"))()
+    print("Clicked")
+end)
+Section:NewButton("Guiding Lighter (Need Lighter)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teilsthebfdifan/Guiding-modhub/refs/heads/main/obf_tzC4VKEz8q97nq1JEmMWTW2Ke86o75zoN5gE6DOB475Gn4H99HoKS9i7sSa4zU95.lua.txt"))()
+    print("Clicked")
+end)
+Section:NewButton("Gummy Flashlight", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bocaj111004/Scripts/refs/heads/main/GummyFlashlight.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Burger", "ButtonInfo", function()
+local Item = game:GetObjects("rbxassetid://100522628")[1] Item.Parent = game.Players.LocalPlayer.Backpack
+    print("Clicked")
+end)
+Section:NewButton("Creeper Gun", "ButtonInfo", function()
+local Item = game:GetObjects("rbxassetid://11733586784")[1] Item.Parent = game.Players.LocalPlayer.Backpack
+    print("Clicked")
+end)
+Section:NewButton("Flashlight (Infinite)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Flashlight"))()
+    print("Clicked")
+end)
+Section:NewButton("Speed Coil", "ButtonInfo", function()
+loadstring(game:HttpGet("https://https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Speed%20Coillight"))()
+    print("Clicked")
+end)
+Section:NewButton("Vitamin (Infinite)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Vitamin"))()
+    print("Clicked")
+end)
+Section:NewButton("Purple Flashlight", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RBXDM/ScrtptsMode/refs/heads/main/Inventory/Item/Purple-FlashLight"))()
+    print("Clicked")
+end)
+Section:NewButton("Mischievous Crucifix (Legits Mod Vers)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Mischievous%20Crucifix%20(Legits%20Mod%20Vers)"))()
+    print("Clicked")
+end)
+Section:NewButton("Bloxy Cola", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Bloxy%20cola"))()
+    print("Clicked")
+end)
+local Tab = Window:NewTab("💎Hubs💎")
+local Section = Tab:NewSection("All of Hubs")
+Section:NewButton("Mspaint", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/main.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Blacking Hub", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Yumiara/Python/main/Main.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Lolhax", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Robloxexploiterz/Release-Lolhax/refs/heads/main/LX%20Doors%20v3.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Blacking X BobHub", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KINGHUB01/BlackKing-obf/main/Doors%20Blackking%20And%20BobHub"))()
+    print("Clicked")
+end)
+Section:NewButton("FFJ Hub", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Modes/refs/heads/main/FFJ"))()
+    print("Clicked")
+end)
+local Tab = Window:NewTab("⚠️Entities Spawner⚠️")
+local Section = Tab:NewSection("Entities Spawner")
+Section:NewButton("Pandemonium", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DripCapybara/Doors-Mode-Remakes/refs/heads/main/PandemoniumProtected.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("A-60", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Idk-lol2/a-60aa/refs/heads/main/---%3D%3D%3D%3D%3D%3D%20a-60%20agresiv%20spawner%20%3D%3D%3D%3D%3D%3D---.txt"))()
+    print("Clicked")
+end)
+Section:NewButton("Glitch Ambush", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teilsthebfdifan/Modhub-assets/refs/heads/main/AROXambush-spawn"))()
+    print("Clicked")
+end)
+Section:NewButton("Glitch Rush", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teilsthebfdifan/Modhub-assets/refs/heads/main/GlitchRushSpawn"))()
+    print("Clicked")
+end)
+Section:NewButton("Chill Seek", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Idk-lol2/chill-seek/refs/heads/main/chillseklal.Pl.txt"))()
+    print("Clicked")
+end)
+Section:NewButton("Depth", "ButtonInfo", function()
+loadstring(game:HttpGet('https://pastefy.app/JztYAL4m/raw'))()
+    print("Clicked")
+end)
+Section:NewButton("A-200", "ButtonInfo", function()
+loadstring(game:HttpGet('https://pastefy.app/1xxpTxo3/raw'))()
+    print("Clicked")
+end)
+Section:NewButton("Smiler", "ButtonInfo", function()
+loadstring(game:HttpGet('https://pastefy.app/YMa2CPBC/raw'))()
+    print("Clicked")
+end)
+Section:NewButton("Hardcore Rebound", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Hardcore%20Rebound"))()
+    print("Clicked")
+end)
+Section:NewButton("A-236", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/236"))()
+    print("Clicked")
+end)
+Section:NewButton("A-350", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/350"))()
+    print("Clicked")
+end)
+Section:NewButton("A-10", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/A-10"))()
+    print("Clicked")
+end)
+Section:NewButton("A-120", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/A-120"))()
+    print("Clicked")
+end)
+Section:NewButton("B-60", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/B60"))()
+    print("Clicked")
+end)
+Section:NewButton("OG A-60", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/A-60"))()
+    print("Clicked")
+end)
+Section:NewButton("Blindy", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/BLINDY"))()
+    print("Clicked")
+end)
+Section:NewButton("Bluyer", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Bluyer"))()
+    print("Clicked")
+end)
+Section:NewButton("Bundger", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Bundger"))()
+    print("Clicked")
+end)
+Section:NewButton("E-200", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/E-200"))()
+    print("Clicked")
+end)
+Section:NewButton("E-60", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/E-60"))()
+    print("Clicked")
+end)
+Section:NewButton("Greance", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Greance1"))()
+    print("Clicked")
+end)
+Section:NewButton("Hunger", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Hunger"))()
+    print("Clicked")
+end)
+Section:NewButton("Huntering", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Huntering"))()
+    print("Clicked")
+end)
+Section:NewButton("Silence", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/Doors-Modes/refs/heads/main/Silence"))()
+    print("Clicked")
+end)
+Section:NewButton("Matcher", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Matcher"))()
+    print("Clicked")
+end)
+Section:NewButton("Re-Rebound", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Re-Rebound"))()
+    print("Clicked")
+end)
+Section:NewButton("Classic Rebound", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Rebound%20classic"))()
+    print("Clicked")
+end)
+Section:NewButton("Surge", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Surge"))()
+    print("Clicked")
+end)
+Section:NewButton("Cease", "ButtonInfo", function()
+loadstring(game:HttpGet("https://pastefy.app/ofutwkjb/raw"))()
+    print("Clicked")
+end)
+Section:NewButton("Shocker", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vct0721/Doors-Stuff/refs/heads/main/Entities/Shocker"))()
+    print("Clicked")
+end)
+Section:NewButton("Blink", "ButtonInfo", function()
+loadstring(game:HttpGet("https://github.com/PABMAXICHAC/doors-monsters-scripts/raw/main/blinkcrux"))()
+    print("Clicked")
+end)
+Section:NewButton("Dread", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vct0721/Doors-Stuff/main/DreadEnity"))()
+    print("Clicked")
+end)
+Section:NewButton("Overseer Eyes", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/huyhoanggphuc/Entity-obfuscate/refs/heads/main/EndlessDoors/Entity/obfuscate/Oversser.txt.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Claim", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/huyhoanggphuc/Entity-obfuscate/refs/heads/main/Claim.lua%20(1).txt"))()
+    print("Clicked")
+end)
+Section:NewButton("A-200", "ButtonInfo", function()
+loadstring(game:HttpGet('https://pastefy.app/1xxpTxo3/raw'))()
+    print("Clicked")
+end)
+Section:NewButton("Unknown-60", "ButtonInfo", function()
+loadstring(game:HttpGet("https://pastefy.app/hdpdkXkf/raw"))()
+    print("Clicked")
+end)
+Section:NewButton("A-90 (Bugged)", "ButtonInfo", function()
+game.Players.LocalPlayer.Character.Humanoid:TakeDamage(35)
+    print("Clicked")
+end)
+Section:NewButton("Blackout (Go To The Next Door)", "ButtonInfo", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Jahani-john/mayhem-mode/main/mayhemmode-main/ObfuscatedEntities/Blackout-obfuscated.lua'))()
+    print("Clicked")
+end)
+Section:NewButton("Chaotic", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/J63633S/Laver-mode/refs/heads/main/Chaotic"))()
+    print("Clicked")
+end)
+Section:NewButton("Classio-Reboundier", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/J63633S/Laver-mode/refs/heads/main/Classio-Reboundier"))()
+    print("Clicked")
+end)
+Section:NewButton("Corrode", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/J63633S/Laver-mode/refs/heads/main/Corrode"))()
+    print("Clicked")
+end)
+Section:NewButton("Moriarty", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/J63633S/Laver-mode/refs/heads/main/Moriarty"))()
+    print("Clicked")
+end)
+Section:NewButton("Death", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/J63633S/Laver-mode/refs/heads/main/Death"))()
+    print("Clicked")
+end)
+Section:NewButton("Distort", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Immersive%20mode/Distort"))()
+    print("Clicked")
+end)
+Section:NewButton("Inspection", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Immersive%20mode/Inspection"))()
+    print("Clicked")
+end)
+Section:NewButton("Router", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Immersive%20mode/Router"))()
+    print("Clicked")
+end)
+Section:NewButton("Darkness", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Immersive%20mode/Darkness"))()
+    print("Clicked")
+end)
+Section:NewButton("Hole", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Immersive%20mode/Hole"))()
+    print("Clicked")
+end)
+Section:NewButton("Flame", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Immersive%20mode/Flame"))()
+    print("Clicked")
+end)
+Section:NewButton("Deer God", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Deer%20God"))()
+    print("Clicked")
+end)
+local Tab = Window:NewTab("📃Scripts📃")
+local Section = Tab:NewSection("All of Scripts")
+Section:NewButton("Jump Enable", "ButtonInfo", function()
+game.Players.LocalPlayer.Character:SetAttribute("CanJump", true)
+    print("Clicked")
+end)
+Section:NewButton("2017 Graphics", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Idk-lol2/2017mode/refs/heads/main/2017MODEtxt.txt"))()
+    print("Clicked")
+end)
+Section:NewButton("Virdius Rift", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Agadigas/Doors/refs/heads/main/VIRIDIS%20RIFT%20ORIGINAL", true))()
+    print("Clicked")
+end)
+Section:NewButton("Speedrun Timer", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Iliankytb/Iliankytb/main/SpeedrunTimer"))()
+    print("Clicked")
+end)
+Section:NewButton("Keyboard", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+    print("Clicked")
+end)
+Section:NewButton("Grumble Chaser (Q to Spawn)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxScriptFY/Grumble/refs/heads/main/.GrumbleChaser"))()
+    print("Clicked")
+end)
+Section:NewButton("Immortal Snail", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAcceleration/Comet-Development/refs/heads/main/Doors/Game/Immortal%20Snail.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Floor Is Lava", "ButtonInfo", function()
+_G.DEBUG_LAVA = false
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAcceleration/Comet-Development/refs/heads/main/Doors/Game/FloorIsLava.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Hotel++", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAcceleration/Hotel-Plus-Plus/refs/heads/main/Loader.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Doors But Liminal", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RTCFYHRFDUTG/doors-but-liminal/refs/heads/main/scary.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Stone Door", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teilsthebfdifan/suggested/refs/heads/main/stonedoor.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Curious Light Door", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teilsthebfdifan/suggested/refs/heads/main/guidingdoorreplacer.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Curious Rift", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kodbolx/kodbolhub/refs/heads/main/curiousrift.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Old Seek", "ButtonInfo", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/StovenChaos/Doors/main/Old%20seek.lua'))()
+    print("Clicked")
+end)
+Section:NewButton("Knob Farm", "ButtonInfo", function()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/T0mix1608/d8ecd8cc5cfeb13b6c950771a84c460e/raw/67cbe12af81257c314d96285438999d54ba904b6/gistfile1.txt", true))()
+    print("Clicked")
+end)
+Section:NewButton("Giggle Land", "ButtonInfo", function()
+loadstring(game:HttpGet("https://t0mix1608.github.io/GiggleLand", true))()
+    print("Clicked")
+end)
+Section:NewButton("Random Materials", "ButtonInfo", function()
+local materials = {
+    Enum.Material.Plastic,
+    Enum.Material.SmoothPlastic,
+    Enum.Material.Wood,
+    Enum.Material.Slate,
+    Enum.Material.Concrete,
+    Enum.Material.CorrodedMetal,
+    Enum.Material.DiamondPlate,
+    Enum.Material.Foil,
+    Enum.Material.Grass,
+    Enum.Material.Ice,
+    Enum.Material.Marble,
+    Enum.Material.Granite,
+    Enum.Material.Brick,
+    Enum.Material.Pebble,
+    Enum.Material.Sand,
+    Enum.Material.Fabric,
+    Enum.Material.Metal,
+    Enum.Material.WoodPlanks,
+    Enum.Material.Neon,
+    Enum.Material.Cobblestone,
+    Enum.Material.CrackedLava,
+    Enum.Material.Glass,
+    Enum.Material.Snow,
+    Enum.Material.Asphalt,
+    Enum.Material.Basalt,
+    Enum.Material.Pavement,
+    Enum.Material.DiamondPlate,
+    Enum.Material.Sandstone,
+    Enum.Material.Limestone,
+    Enum.Material.LeafyGrass,
+    Enum.Material.Mud,
+    Enum.Material.Rock,
+    Enum.Material.Salt,
+}
+
+local function changePartMaterial(part)
+    local randomMaterial = materials[math.random(1, #materials)]
+    part.Material = randomMaterial
+end
+
+local function changeMaterials()
+    for _, part in ipairs(workspace:GetDescendants()) do
+        if part:IsA("BasePart") then
+            changePartMaterial(part)
+        end
+    end
+end
+
+changeMaterials()
+
+while true do
+    wait(5)
+    changeMaterials()
+end
+    print("Clicked")
+end)
+Section:NewButton("Floor 2 Theme", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/localplayerr/Doors-stuff/refs/heads/main/Floor%202%20script"))()
+    print("Clicked")
+end)
+Section:NewButton("Auto Glitch Fragment", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KietVN02202/KietVN02202/refs/heads/main/Doors"))()
+    print("Clicked")
+end)
+Section:NewButton("Healthbars", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAcceleration/Comet-Development/refs/heads/main/Doors/Game/PlayerHealthbars.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Rooms Theme", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Script5039392/Script/main/Hotel%20rooms.lua"))()
+    print("Clicked")
+end)
+Section:NewButton("Badge Customizer (Lobby Only)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Badge%20Customizer"))()
+    print("Clicked")
+end)
+local Tab = Window:NewTab("🎄Hotel- Scripts🎄")
+local Section = Tab:NewSection("All of Hotel- Scripts")
+Section:NewButton("Storage Room", "ButtonInfo", function()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/MojorainbowYT/ee4c98ca9dc0517be05524e0ad98cade/raw/97cb4cf182c6c6302952cf006401f7df04cc5eac/gistfile1.txt"))()
+    print("Clicked")
+end)
+Section:NewButton("Crucifix & Skeleton Key Pre-Run Shop", "ButtonInfo", function()
+local Crucifix = game.Players.LocalPlayer.PlayerGui.MainUI.ItemShop.Items.ItemShop_Crucifix
+
+if not Crucifix.Visible == true then
+
+    Crucifix.Visible = true
+    local StarterGui = game:GetService("StarterGui")
+
+StarterGui:SetCore("SendNotification", {
+    Title = "Doors Full Pre-Run Shop!";
+    Text = "Loaded!";
+    Duration = 5;
+})
+
+
+    else     local StarterGui = game:GetService("StarterGui")
+
+StarterGui:SetCore("SendNotification", {
+    Title = "Script Loading!";
+    Text = "Loading 1/2!";
+    Duration = 5;
+})
+
+    end
+
+    local SkeletonKey = game.Players.LocalPlayer.PlayerGui.MainUI.ItemShop.Items["ItemShop_Skeleton Key"]
+
+if SkeletonKey.Visible == false then
+    SkeletonKey.Visible = true
+    local StarterGui = game:GetService("StarterGui")
+
+    StarterGui:SetCore("SendNotification", {
+        Title = "Full Pre-Run Shop Loaded!";
+        Text = "Have fun!";
+        Duration = 5;
+    })
+else
+    local StarterGui = game:GetService("StarterGui")
+
+    StarterGui:SetCore("SendNotification", {
+        Title = "Doors Full Pre-Run Shop!";
+        Text = "Have Fun!";
+        Duration = 5;
+    })
+end
+    print("Clicked")
+end)
+Section:NewButton("Inf Revive", "ButtonInfo", function()
+game.ReplicatedStorage.Bricks.Revive:FireServer()
+    print("Clicked")
+end)
+Section:NewButton("Coin Giver", "ButtonInfo", function()
+game.Players.LocalPlayer.Gold.Value = 1000000
+    print("Clicked")
+end)
+Section:NewButton("Seek Crucifix", "ButtonInfo", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/hi822010/Extras-Gliese-Hub-Doors/refs/heads/main/Seek%20Crucifix'))()
+    print("Clicked")
+end)
+Section:NewButton("Old Crucifix", "ButtonInfo", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/ZepsyyCodesLUA/Utilities/main/Doors/Crucifix.lua'))()
+    print("Clicked")
+end)
+Section:NewButton("Eyes Crucifix", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Eyes%20Crucifix"))()
+    print("Clicked")
+end)
+Section:NewButton("Skeleton Crucifix", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Skeleton%20Crucifix"))()
+    print("Clicked")
+end)
+local Tab = Window:NewTab("🐬Morphs🐋")
+local Section = Tab:NewSection("Scripts That Make U Become The Entities")
+Section:NewButton("Chrono's Morphs Hub", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/Public-Scripts/main/Morphing/MorphScript.lua"))()
+    print("Clicked")
+end)
+local Tab = Window:NewTab("😁Random Scripts😁")
+local Section = Tab:NewSection("Scripts That I Made For Fun")
+Section:NewButton("Random (Entity Spawner)", "ButtonInfo", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/bre29be3/J/refs/heads/main/Random%20(idk)"))()
+    print("Clicked")
+end)
+local Tab = Window:NewTab("🥳Credits🥳")
+local Section = Tab:NewSection("For Anyone Who Dont Like Grab Scripts Without Permission")
+Section:NewLabel("Silly Cat Cat (Laver Mode)")
+Section:NewLabel("temokote (Badge Customizer)")
+game:GetService("TextChatService").TextChannels.RBXGeneral:DisplaySystemMessage("<font color='#00ff00'>[Script Succesfully Executed]: 🤑Welcome To Our Hub🤑.</font>")
+
+---====== Load achievement giver ======---
+local achievementGiver = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+---====== Display achievement ======---
+achievementGiver({
+    Title = "✅️Script Succesfully Loaded✅️",
+    Desc = "Welcome To The Madness😈",
+    Reason = "Loaded",
+    Image = "rbxassetid://90447395338543"
+})
+local shut = game.Players.LocalPlayer.PlayerGui.MainUI.MainFrame.IntroText
+local intro = shut:Clone()
+intro.Parent = game.Players.LocalPlayer.PlayerGui.MainUI
+intro.Name = "IntroTextPleaseThankYou"
+intro.Visible = true
+intro.Text = "🚪Doors Hub🚪"
+intro.TextTransparency = 0
+local underline = UDim2.new(1.1, 0, 0.015, 6)
+game.TweenService:Create(intro.Underline, TweenInfo.new(3), {Size = underline}):Play()
+wait(7)
+game.TweenService:Create(intro.Underline, TweenInfo.new(1.3), {Size = UDim2.new(0.95, 0, 0.015, 6)}):Play()
+wait(1)
+game.TweenService:Create(intro.Underline, TweenInfo.new(2), {ImageTransparency = 1}):Play()
+game.TweenService:Create(intro, TweenInfo.new(2), {TextTransparency = 1}):Play()
+game.TweenService:Create(intro.Underline, TweenInfo.new(7), {Size = UDim2.new(0, 0, 0.015, 6)}):Play()
+wait(2.3)
+intro.Visible = false
+wait(9)
+intro:Destroy()
