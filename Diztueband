@@ -16,7 +16,6 @@ function resetLighting()
     game:GetService("TweenService"):Create(lighting, TweenInfo.new(5), {TintColor = Color3.fromRGB(255, 255, 255)}):Play()
 end
 
-wait(5)
 local entity = spawner.Create({
     Entity = {
         Name = "dizturbance",
@@ -41,7 +40,7 @@ local entity = spawner.Create({
     },
     Movement = {
         Speed = 150,
-        Delay = 0,
+        Delay = 5,
         Reversed = false
     },
     Rebounding = {
