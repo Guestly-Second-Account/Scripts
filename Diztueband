@@ -1,0 +1,129 @@
+local spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Entity%20Spawner/V2/Source.lua"))()
+
+function setPinkLighting()
+    local lighting = game.Lighting.MainColorCorrection
+    lighting.TintColor = Color3.fromRGB(255, 255, 255)
+    lighting.Contrast = 10
+    game:GetService("TweenService"):Create(lighting, TweenInfo.new(2.5), {Contrast = 0}):Play()
+    game:GetService("TweenService"):Create(lighting, TweenInfo.new(5), {TintColor = Color3.fromRGB(230, 3, 255)}):Play()
+end
+
+function resetLighting()
+    local lighting = game.Lighting.MainColorCorrection
+    lighting.TintColor = Color3.fromRGB(230, 3, 255)
+    lighting.Contrast = 10
+    game:GetService("TweenService"):Create(lighting, TweenInfo.new(2.5), {Contrast = 0}):Play()
+    game:GetService("TweenService"):Create(lighting, TweenInfo.new(5), {TintColor = Color3.fromRGB(255, 255, 255)}):Play()
+end
+
+wait(5)
+local entity = spawner.Create({
+    Entity = {
+        Name = "dizturbance",
+        Asset = "rbxassetid://96378384647410",
+        HeightOffset = 0
+    },
+    Lights = {
+        Flicker = {
+            Enabled = false,
+            Duration = 20
+        },
+        Shatter = true,
+        Repair = false
+    },
+    Earthquake = {
+        Enabled = false
+    },
+    CameraShake = {
+        Enabled = true,
+        Range = 500,
+        Values = {1.5, 20, 0.1, 1}
+    },
+    Movement = {
+        Speed = 150,
+        Delay = 0,
+        Reversed = false
+    },
+    Rebounding = {
+        Enabled = false
+    },
+    Damage = {
+        Enabled = true,
+        Range = 40,
+        Amount = 200
+    },
+    Crucifixion = {
+        Enabled = true,
+        Range = 50,
+        Resist = false,
+        Break = true
+    },
+    Death = {
+        Type = "Guiding",
+        Hints = {
+            "You die to dizturbance?",
+            "When it appears the room turns pink",
+            "Hide now because it's coming very soon!",
+            "Good luck"
+        },
+        Cause = "dizturbance"
+    }
+})
+
+-- Spawn
+entity:SetCallback("OnSpawned", function()
+    setPinkLighting()
+    local s = Instance.new("Sound", workspace)
+    s.SoundId = "rbxassetid://80277453959427"
+    s.Volume = 4.5
+    s:Play()
+end)
+
+-- Despawn
+entity:SetCallback("OnDespawned", function()
+    resetLighting()
+    local s = Instance.new("Sound", workspace)
+    s.SoundId = "rbxassetid://1837829565"
+    s.Volume = 9999
+    s.PlaybackSpeed = 0.5
+    s:Play()
+end)
+
+-- Death / Jumpscare
+entity:SetCallback("OnDeath", function()
+    local shadow = game:GetObjects("rbxassetid://11503625408")[1]
+    local gui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+    local cue = Instance.new("Sound", workspace)
+    cue.SoundId = "rbxassetid://10483837590"
+    cue.Volume = 3
+    cue.PlaybackSpeed = 0.4
+    cue:Play()
+
+    shadow.Parent = gui
+    shadow.Visible = true
+    local label = shadow.ImageLabel
+    local sizeValue = shadow.SizeValue
+    local rnd = Random.new()
+    local id = "rbxassetid://131248740447285"
+    label.Image = id
+
+    shadow.Jumpscare:Play()
+    for _ = 1, 25 do
+        local v = math.random(1, 3)
+        label.ImageColor3 = v == 1 and Color3.new(0, 0, 0) or (v == 2 and Color3.new(255, 0, 0) or Color3.new(0, 0, 0))
+        shadow.BackgroundColor3 = v == 1 and Color3.new(0, 0, 0) or Color3.new(3, 24, 255)
+        label.Position = UDim2.new(rnd:NextNumber(0.4, 0.6), 0, rnd:NextNumber(0.45, 0.55), 0)
+        label.Size = label.Size + UDim2.new(sizeValue.Value, 0, sizeValue.Value, 0)
+        label.Rotation = math.random(-10, 10)
+        sizeValue.Value -= 0.01
+        task.wait()
+    end
+
+    label.ImageColor3 = Color3.new(1, 1, 1)
+    shadow.BackgroundColor3 = Color3.new(0, 0, 0)
+    shadow.Visible = false
+    shadow.Jumpscare:Stop()
+end)
+
+-- Run entity
+entity:Run()
