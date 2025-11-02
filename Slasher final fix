@@ -1,0 +1,2542 @@
+function info(txt)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+pcall(function() game.CoreGui.Revit:Destroy() end)
+task.wait(.1)
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = 'Revit'
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+
+
+spawn(function()
+Credits.Parent = ScreenGui
+Credits.Font=Enum.Font.Arcade
+Credits.TextColor3=Color3.new(1,1,1)
+Credits.Position = UDim2.new(0,0,0,0)
+Credits.TextSize = 35
+Credits.Size = UDim2.new(1,0,.1,0)
+Credits.Text = ''
+Credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Credits.BorderColor3 = Color3.fromRGB(0, 255, 0)
+end)
+function tw(var,s)
+local a = ""
+local s_l = #s
+for i = 1, s_l do
+local c = string.sub(s, i, i)
+a = a .. c
+var.Text = a
+if c == "." then
+wait(.6)
+elseif c == ";" then
+wait(.3)
+elseif c == "," then
+wait(.3)
+elseif c == "!" then
+wait(.3)
+end
+wait(.03)
+end end
+tw(Credits,txt)
+task.wait(2)
+ScreenGui:Destroy()
+end
+
+spawn(function()
+info('Thanks for using my script :D')
+
+end)
+
+wait(3)
+function info(txt)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+pcall(function() game.CoreGui.Revit:Destroy() end)
+task.wait(.1)
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = 'Revit'
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+
+
+spawn(function()
+Credits.Parent = ScreenGui
+Credits.Font=Enum.Font.Arcade
+Credits.TextColor3=Color3.new(1,1,1)
+Credits.Position = UDim2.new(0,0,0,0)
+Credits.TextSize = 35
+Credits.Size = UDim2.new(1,0,.1,0)
+Credits.Text = ''
+Credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Credits.BorderColor3 = Color3.fromRGB(0, 255, 0)
+end)
+function tw(var,s)
+local a = ""
+local s_l = #s
+for i = 1, s_l do
+local c = string.sub(s, i, i)
+a = a .. c
+var.Text = a
+if c == "." then
+wait(.6)
+elseif c == ";" then
+wait(.3)
+elseif c == "," then
+wait(.3)
+elseif c == "!" then
+wait(.3)
+end
+wait(.03)
+end end
+tw(Credits,txt)
+task.wait(2)
+ScreenGui:Destroy()
+end
+
+spawn(function()
+info('Credits to Reap for this Typewriter script btw!')
+
+end)
+
+wait(3)
+function info(txt)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+pcall(function() game.CoreGui.Revit:Destroy() end)
+task.wait(.1)
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = 'Revit'
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+
+
+spawn(function()
+Credits.Parent = ScreenGui
+Credits.Font=Enum.Font.Arcade
+Credits.TextColor3=Color3.new(1,1,1)
+Credits.Position = UDim2.new(0,0,0,0)
+Credits.TextSize = 35
+Credits.Size = UDim2.new(1,0,.1,0)
+Credits.Text = ''
+Credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Credits.BorderColor3 = Color3.fromRGB(0, 255, 0)
+end)
+function tw(var,s)
+local a = ""
+local s_l = #s
+for i = 1, s_l do
+local c = string.sub(s, i, i)
+a = a .. c
+var.Text = a
+if c == "." then
+wait(.6)
+elseif c == ";" then
+wait(.3)
+elseif c == "," then
+wait(.3)
+elseif c == "!" then
+wait(.3)
+end
+wait(.03)
+end end
+tw(Credits,txt)
+task.wait(2)
+ScreenGui:Destroy()
+end
+
+spawn(function()
+info('Credits to souldriven also!')
+
+end)
+
+local currentlyPlayingTrack = nil
+local currentlyPlayingSound = nil
+local blockedAudioIds = {621557962, 0}
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local rootPart = character:WaitForChild("HumanoidRootPart")
+local humanoid = character:WaitForChild("Humanoid")
+
+local function destroyBlockedSounds()
+    for _, child in ipairs(rootPart:GetChildren()) do
+        if child:IsA("Sound") then
+            local id = tonumber(string.match(child.SoundId, "%d+"))
+            for _, blockedId in ipairs(blockedAudioIds) do
+                if id == blockedId then
+                    child:Stop()
+                    child:Destroy()
+                end
+            end
+        end
+    end
+end
+
+spawn(function()
+    while true do
+        destroyBlockedSounds()
+        wait(0.05)
+    end
+end)
+
+local function handleAnimationDetection(animIdsToStop, replacementAnimId, replacementAnimSpeed, replacementAudioId, replacementAudioVolume)
+    local function onAnimPlayed(animationTrack)
+        local animId = tonumber(string.match(animationTrack.Animation.AnimationId, "%d+"))
+        for _, stopId in ipairs(animIdsToStop) do
+            if animId == stopId then
+                if currentlyPlayingTrack then
+                    currentlyPlayingTrack:Stop(0)
+                    currentlyPlayingTrack = nil
+                end
+                animationTrack:Stop(0)
+                if currentlyPlayingSound then
+                    currentlyPlayingSound:Stop()
+                    currentlyPlayingSound:Destroy()
+                    currentlyPlayingSound = nil
+                end
+                local replacementAnimation = Instance.new("Animation")
+                replacementAnimation.AnimationId = "rbxassetid://" .. replacementAnimId
+                local replacementTrack = humanoid:LoadAnimation(replacementAnimation)
+                replacementTrack:Play(0)
+                replacementTrack:AdjustSpeed(replacementAnimSpeed or 1)
+                currentlyPlayingTrack = replacementTrack
+                if replacementAudioId then
+                    local sound = Instance.new("Sound")
+                    sound.SoundId = "rbxassetid://" .. replacementAudioId
+                    sound.Looped = false
+                    sound.Volume = replacementAudioVolume or 1
+                    sound.Parent = rootPart
+                    sound:Play()
+                    currentlyPlayingSound = sound
+                end
+                break
+            end
+        end
+    end
+    humanoid.AnimationPlayed:Connect(onAnimPlayed)
+end
+
+local firstAnimIdsToStop = {10469493270}
+local firstReplacementAnimId = 89044067797964
+local firstReplacementAnimSpeed = 1
+local firstReplacementAudioId = 7122613461
+local firstReplacementAudioVolume = 1
+handleAnimationDetection(firstAnimIdsToStop, firstReplacementAnimId, firstReplacementAnimSpeed, firstReplacementAudioId, firstReplacementAudioVolume)
+
+local secondAnimIdsToStop = {10469630950}
+local secondReplacementAnimId = 74334194837918
+local secondReplacementAnimSpeed = 1
+local secondReplacementAudioId = 7122613461
+local secondReplacementAudioVolume = 0.8
+handleAnimationDetection(secondAnimIdsToStop, secondReplacementAnimId, secondReplacementAnimSpeed, secondReplacementAudioId, secondReplacementAudioVolume)
+
+local thirdAnimIdsToStop = {10469639222}
+local thirdReplacementAnimId = 94353845974131
+local thirdReplacementAnimSpeed = 1
+local thirdReplacementAudioId = 7122613461
+local thirdReplacementAudioVolume = 0.7
+handleAnimationDetection(thirdAnimIdsToStop, thirdReplacementAnimId, thirdReplacementAnimSpeed, thirdReplacementAudioId, thirdReplacementAudioVolume)
+
+local fourthAnimIdsToStop = {10469643643}
+local fourthReplacementAnimId = 80601239139774
+local fourthReplacementAnimSpeed = 1
+local fourthReplacementAudioId = 7122613461
+local fourthReplacementAudioVolume = 1
+handleAnimationDetection(fourthAnimIdsToStop, fourthReplacementAnimId, fourthReplacementAnimSpeed, fourthReplacementAudioId, fourthReplacementAudioVolume)
+
+ 
+spawn(function()
+end)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+ 
+local rightArm = character:FindFirstChild("Right Arm")
+local leftArm = character:FindFirstChild("Left Arm")
+ 
+if not rightArm or not leftArm then
+    warn("Right or Left Arm not found! Ensure this is R6.")
+    return
+end
+ 
+local function createBlade(arm, name, positionOffset, rotation)
+    local blade = Instance.new("Part")
+    blade.Name = name
+    blade.BottomSurface = Enum.SurfaceType.Smooth
+    blade.TopSurface = Enum.SurfaceType.Smooth
+    blade.Size = Vector3.new(0, 1, 2)
+    blade.Anchored = false
+    blade.CanCollide = false
+ 
+    local mesh = Instance.new("SpecialMesh")
+    mesh.Scale = Vector3.new(1, 1, 1)
+    mesh.MeshId = "rbxassetid://132973224383899"
+    mesh.TextureId = "rbxassetid://81448316543904"
+    mesh.MeshType = Enum.MeshType.FileMesh
+    mesh.Parent = blade
+ 
+ 
+    local motor = Instance.new("Motor6D")
+    motor.Part0 = arm
+    motor.Part1 = blade
+    motor.Parent = arm
+ 
+ 
+    motor.C0 = CFrame.new(positionOffset.X, positionOffset.Y, positionOffset.Z) 
+        * CFrame.Angles(math.rad(rotation.X), math.rad(rotation.Y), math.rad(rotation.Z))
+ 
+ 
+    blade.Parent = character
+end
+ 
+ 
+createBlade(
+    rightArm, 
+    "John Doe", 
+    Vector3.new(0.3, 0.5, 0), 
+    Vector3.new(0, 0, 00) 
+)
+ 
+
+  
+spawn(function()
+end)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+ 
+local rightArm = character:FindFirstChild("Right Arm")
+local leftArm = character:FindFirstChild("Left Arm")
+ 
+if not rightArm or not leftArm then
+    warn("Right or Left Arm not found! Ensure this is R6.")
+    return
+end
+ 
+local function createBlade(arm, name, positionOffset, rotation)
+    local blade = Instance.new("Part")
+    blade.Name = name
+    blade.BottomSurface = Enum.SurfaceType.Smooth
+    blade.TopSurface = Enum.SurfaceType.Smooth
+    blade.Size = Vector3.new(0, 1, 2)
+    blade.Anchored = false
+    blade.CanCollide = false
+ 
+    local mesh = Instance.new("SpecialMesh")
+    mesh.Scale = Vector3.new(1, 1, 1)
+    mesh.MeshId = "rbxassetid://97474504662193"
+    mesh.TextureId = "rbxassetid://81448316543904"
+    mesh.MeshType = Enum.MeshType.FileMesh
+    mesh.Parent = blade
+ 
+ 
+    local motor = Instance.new("Motor6D")
+    motor.Part0 = arm
+    motor.Part1 = blade
+    motor.Parent = arm
+ 
+ 
+    motor.C0 = CFrame.new(positionOffset.X, positionOffset.Y, positionOffset.Z) 
+        * CFrame.Angles(math.rad(rotation.X), math.rad(rotation.Y), math.rad(rotation.Z))
+ 
+ 
+    blade.Parent = character
+end
+ 
+ 
+createBlade(
+    rightArm, 
+    "John Doe", 
+    Vector3.new(0.3, -1.5, 0), 
+    Vector3.new(0, 0, 00) 
+)
+
+game.Lighting.ClockTime = 0
+
+local ok, err = pcall(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Darker-TheDarkestGuy/Scripts/refs/heads/main/Mastery%20Deku%20Moveset"))()
+end)
+if not ok then
+    warn("⚠️ Lỗi khi tải script ngoài:", err)
+end
+
+
+wait(1)
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 1
+    sound.Looped = true
+    sound.PlaybackSpeed = 1
+    sound.Name = "SucK"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/Scripts/raw/refs/heads/main/iLoveYt.net_YouTube_Guest-666-VS-Noob-OST-Placeholder-Forsak_Media_vdMTs58Cdsk_004_360p.mp3?raw=true", 1, " SucK1")
+
+game:GetService("Players").LocalPlayer.PlayerGui.Bar.MagicHealth.TextLabel.Text = "RAGENESS OF THE SLASHES"
+
+game:GetService("Players").LocalPlayer.PlayerGui.Bar.MagicHealth.Health.Bar.Bar.ImageColor3 = Color3.fromRGB(98, 255, 0)
+
+--Move & Ultimate Names
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("1").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Raging Slash"
+
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("2").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Cons-Slash"
+
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("3").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Fling Slash"
+
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("4").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Uppercut Slash"
+
+
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+local playerGui = player:WaitForChild("PlayerGui")
+
+
+local function findGuiAndSetText()
+
+    local screenGui = playerGui:FindFirstChild("ScreenGui")
+
+    if screenGui then
+
+        local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
+
+        if magicHealthFrame then
+
+            local textLabel = magicHealthFrame:FindFirstChild("TextLabel")
+
+            if textLabel then
+
+                textLabel.Text = "Rageness"
+
+            end
+
+        end
+
+    end
+
+end
+
+
+playerGui.DescendantAdded:Connect(findGuiAndSetText)
+
+findGuiAndSetText()
+
+--[[Animations]]
+
+--[[Move 1]]
+
+local animationId = 10468665991
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function info(txt)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+pcall(function() game.CoreGui.Revit:Destroy() end)
+task.wait(.1)
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = 'Revit'
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+
+
+spawn(function()
+Credits.Parent = ScreenGui
+Credits.Font=Enum.Font.Arcade
+Credits.TextColor3=Color3.new(1,1,1)
+Credits.Position = UDim2.new(0,0,0,0)
+Credits.TextSize = 35
+Credits.Size = UDim2.new(1,0,.1,0)
+Credits.Text = ''
+Credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Credits.BorderColor3 = Color3.fromRGB(0, 255, 0)
+end)
+function tw(var,s)
+local a = ""
+local s_l = #s
+for i = 1, s_l do
+local c = string.sub(s, i, i)
+a = a .. c
+var.Text = a
+if c == "." then
+wait(.6)
+elseif c == ";" then
+wait(.3)
+elseif c == "," then
+wait(.3)
+elseif c == "!" then
+wait(.3)
+end
+wait(.03)
+end end
+tw(Credits,txt)
+task.wait(2)
+ScreenGui:Destroy()
+end
+
+spawn(function()
+info('You: Take this! >:D')
+
+end)
+
+local function setGreenLightColor(emitter)
+    if emitter:IsA("ParticleEmitter") then
+        -- Set the color to a gradient resembling light green
+        emitter.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, Color3.new(0.5, 1, 0.5)), -- Light green
+            ColorSequenceKeypoint.new(0.5, Color3.new(0.2, 1, 0.2)), -- Bright green
+            ColorSequenceKeypoint.new(1, Color3.new(0, 1, 0)) -- Pure green
+        }
+        -- Increase light emission to make the particles glow
+        emitter.LightEmission = 1
+    end
+end
+
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(boom1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        setGreenLightColor(child) -- Apply green light color to the emitter
+        child:Emit(60) -- Emit particles
+    end
+end
+
+local leap1 = game.ReplicatedStorage.Resources.KJEffects["LeapParticles"].Leap:Clone()
+leap1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(leap1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        setGreenLightColor(child)
+        child:Emit(1)
+    end
+end
+
+-- Repeat the same for all other particle effects
+local function cloneAndSetParticles(effect, parent, emitCount)
+    local clone = effect:Clone()
+    clone.Parent = parent
+    for _, child in ipairs(clone:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+            setGreenLightColor(child)
+            child:Emit(emitCount)
+        end
+    end
+end
+
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Attachment, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Emit, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningparty, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinbeam"].beam2, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapct"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest2"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch2, game.Players.LocalPlayer.Character["Torso"], 1)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ImpactEffect2"].Attachment, game.Players.LocalPlayer.Character["Torso"], 3)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke, game.Players.LocalPlayer.Character["Torso"], 20)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke, game.Players.LocalPlayer.Character["Torso"], 3)
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 10
+    sound.PlaybackSpeed = 0.9
+    sound.Name = "First"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/Scripts/raw/refs/heads/main/XRecorder_Edited_20251101_01.mp3?raw=true", 1, " SucK2")
+
+local plr = game.Players.LocalPlayer
+local chr = plr.Character or plr.CharacterAdded:Wait()
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "First1"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local imageLabel = Instance.new("ImageLabel")
+imageLabel.Name = "First2"
+imageLabel.Size = UDim2.new(1, 0, 1, 0)
+imageLabel.BackgroundTransparency = 1
+imageLabel.ImageTransparency = 0
+imageLabel.Image = "rbxassetid://112366055289640"
+imageLabel.Parent = screenGui
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://80601239139774"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0.1)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.9)
+
+local TweenService = game:GetService("TweenService")
+local TW = TweenService:Create(game.Players.LocalPlayer.PlayerGui.First1.First2, TweenInfo.new(1),{ImageTransparency = 1})
+TW:Play()
+end
+end
+
+wait(2)
+game.Workspace.First:Destroy()
+game.Players.LocalPlayer.PlayerGui.First1:Destroy()
+
+end
+
+--[[END OF MOVE 1 ANIM]]
+
+--[[Move 2]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 10466974800
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function info(txt)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+pcall(function() game.CoreGui.Revit:Destroy() end)
+task.wait(.1)
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = 'Revit'
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+
+
+spawn(function()
+Credits.Parent = ScreenGui
+Credits.Font=Enum.Font.Arcade
+Credits.TextColor3=Color3.new(1,1,1)
+Credits.Position = UDim2.new(0,0,0,0)
+Credits.TextSize = 35
+Credits.Size = UDim2.new(1,0,.1,0)
+Credits.Text = ''
+Credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Credits.BorderColor3 = Color3.fromRGB(0, 255, 0)
+end)
+function tw(var,s)
+local a = ""
+local s_l = #s
+for i = 1, s_l do
+local c = string.sub(s, i, i)
+a = a .. c
+var.Text = a
+if c == "." then
+wait(.6)
+elseif c == ";" then
+wait(.3)
+elseif c == "," then
+wait(.3)
+elseif c == "!" then
+wait(.3)
+end
+wait(.03)
+end end
+tw(Credits,txt)
+task.wait(2)
+ScreenGui:Destroy()
+end
+
+spawn(function()
+info('You: Eat my slashes!!')
+
+end)
+
+local plr = game.Players.LocalPlayer
+local chr = plr.Character or plr.CharacterAdded:Wait()
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Second"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local imageLabel = Instance.new("ImageLabel")
+imageLabel.Name = "Second2"
+imageLabel.Size = UDim2.new(1, 0, 1, 0)
+imageLabel.BackgroundTransparency = 1
+imageLabel.ImageTransparency = 1
+imageLabel.Image = "rbxassetid://112366055289640"
+imageLabel.Parent = screenGui
+local TweenService = game:GetService("TweenService")
+local TW = TweenService:Create(game.Players.LocalPlayer.PlayerGui.Second.Second2, TweenInfo.new(2),{ImageTransparency = 0})
+TW:Play()
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.FiveSeasonsFX.CharFX.HeatUp:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.FiveSeasonsFX.CharFX.WindupGlow:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 5
+    sound.PlaybackSpeed = 1
+    sound.Name = "Second"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/DOORS/raw/refs/heads/main/lv_0_20251101190810.mp3?raw=true", 1, " SucK3")
+
+-- Check for Resources folder in ReplicatedStorage
+local resourcesFolder = ReplicatedStorage:WaitForChild("Resources")
+
+-- Check for KJEffects folder inside Resources
+local kjEffectsFolder = resourcesFolder:WaitForChild("KJEffects")
+
+-- Check for speedlinesandstuff part inside KJEffects
+local speedlinesandstuffPart = kjEffectsFolder:WaitForChild("barrage")
+
+-- Duplicate the speedlinesandstuff part
+local speedlinesandstuffClone = speedlinesandstuffPart:Clone()
+
+-- Put the duplicate in Workspace
+speedlinesandstuffClone.Parent = Workspace
+
+-- Set the position to the Right Arm initially
+speedlinesandstuffClone.CFrame = rightArm.CFrame
+
+-- Function to enable all ParticleEmitters
+local function enableParticleEmitters(parent)
+    for _, descendant in ipairs(parent:GetDescendants()) do
+        if descendant:IsA("ParticleEmitter") then
+            descendant.Enabled = true
+        end
+    end
+end
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://15290930205"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(2.5)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(2.5)
+
+
+    end
+
+wait(2)
+local TweenService = game:GetService("TweenService")
+local TW = TweenService:Create(game.Players.LocalPlayer.PlayerGui.Second.Second2, TweenInfo.new(2),{ImageTransparency = 1})
+TW:Play()
+wait(2)
+game.Players.LocalPlayer.PlayerGui.Second.Second:Destroy()
+
+end
+
+--[[END OF MOVE 2 ANIM]]
+
+--[[omi]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 13927612951 ----omi
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://0"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+wait(3)
+game.Workspace.Second:Destroy()
+    end
+
+end
+
+--[[END OF OMI ANIM]]
+
+--[[tableflip]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 11365563255 ------table flip
+ 
+ 
+local player = game.Players.LocalPlayer
+ 
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+local humanoid = character:WaitForChild("Humanoid")
+ 
+ 
+local function onAnimationPlayed(animationTrack)
+ 
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+ 
+local p = game.Players.LocalPlayer
+ 
+local Humanoid = p.Character:WaitForChild("Humanoid")
+ 
+ 
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+ 
+    animTrack:Stop()
+ 
+end
+ 
+ 
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = player.Character or player.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://0"
+local playAnim = humanoid:LoadAnimation(anim)
+anim.AnimationId = "rbxassetid://0"
+playAnim:Play()
+
+    end
+ 
+end
+
+--[[END OF TABLEFLIP ANIM]]
+
+--[[serious]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 12983333733
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local player = game.Players.LocalPlayer
+repeat wait() until player.Character.Humanoid
+local humanoid = player.Character.Humanoid
+local character = player.Character or player.CharacterAdded:Wait()
+local UserInputService = game:GetService("UserInputService")
+local anim = Instance.new("Animation")
+anim.AnimationId = "rbxassetid://13071982935"
+local playAnim = humanoid:LoadAnimation(anim)
+anim.AnimationId = "rbxassetid://0"
+playAnim:Play()
+
+    end
+
+end
+
+--[[END OF serious ANIM]]
+
+--[[move 3]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 10471336737
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 10
+    sound.PlaybackSpeed = 1
+    sound.Name = "Third"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/Scripts/raw/refs/heads/main/XRecorder_Edited_20251102_01.mp3?raw=true", 1, " SucK4")
+
+local function setGreenLightColor(emitter)
+    if emitter:IsA("ParticleEmitter") then
+        -- Set the color to a gradient resembling light green
+        emitter.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, Color3.new(0.5, 1, 0.5)), -- Light green
+            ColorSequenceKeypoint.new(0.5, Color3.new(0.2, 1, 0.2)), -- Bright green
+            ColorSequenceKeypoint.new(1, Color3.new(0, 1, 0)) -- Pure green
+        }
+        -- Increase light emission to make the particles glow
+        emitter.LightEmission = 1
+    end
+end
+
+local boom1 = game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke:Clone()
+boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(boom1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        setGreenLightColor(child) -- Apply green light color to the emitter
+        child:Emit(60) -- Emit particles
+    end
+end
+
+local leap1 = game.ReplicatedStorage.Resources.KJEffects["LeapParticles"].Leap:Clone()
+leap1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(leap1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        setGreenLightColor(child)
+        child:Emit(1)
+    end
+end
+
+-- Repeat the same for all other particle effects
+local function cloneAndSetParticles(effect, parent, emitCount)
+    local clone = effect:Clone()
+    clone.Parent = parent
+    for _, child in ipairs(clone:GetChildren()) do
+        if child:IsA("ParticleEmitter") then
+            setGreenLightColor(child)
+            child:Emit(emitCount)
+        end
+    end
+end
+
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Attachment, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Emit, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningparty, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinbeam"].beam2, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapct"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest2"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch2, game.Players.LocalPlayer.Character["Torso"], 1)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ImpactEffect2"].Attachment, game.Players.LocalPlayer.Character["Torso"], 3)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke, game.Players.LocalPlayer.Character["Torso"], 20)
+cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke, game.Players.LocalPlayer.Character["Torso"], 3)
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://94353845974131"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0.3
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+
+delay(1.8, function()
+
+    Anim:Stop()
+
+end)
+
+
+    end
+
+wait(5)
+game.Workspace.Third:Destroy()
+end
+
+
+--[[END OF MOVE 3 ANIM]]
+
+--[[Move 4]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12510170988
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 10
+    sound.PlaybackSpeed = 1
+    sound.Name = "Four"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/Scripts/raw/refs/heads/main/XRecorder_Edited_20251102_02.mp3?raw=true", 1, " SucK5")
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.CrushingPull.Slam.Part.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+-- Bright blue color sequence
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx2 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.a:Clone()
+fx2.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx2:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local fx3 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmFX:Clone()
+fx3.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx3:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(1) -- Emit 1 particle
+    end
+end
+
+fx3:Destroy()
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fxcustom = game:GetService("ReplicatedStorage").Resources.IceHammer.Explode.Explode["8"]:Clone()
+fxcustom.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fxcustom = game:GetService("ReplicatedStorage").Resources.IceHammer.Explode.Explode["7"]:Clone()
+fxcustom.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local fx6 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmBurst.a:Clone()
+fx6.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx6:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local fx7 = game.ReplicatedStorage.Resources.FiveSeasonsFX["CharFX"].ArmFX:Clone()
+fx7.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx7:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(1) -- Emit 1 particle
+    end
+end
+
+fx7:Destroy()
+
+-- Function to create a beam with custom start and end offsets
+local function createBeam(startOffset, endOffset)
+    -- Create start part for the beam
+    local startPart = Instance.new("Part", workspace)
+    startPart.Anchored = true
+    startPart.Transparency = 1
+    startPart.Size = Vector3.new(1, 1, 1)
+    startPart.CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(startOffset.X, startOffset.Y, startOffset.Z)
+
+    -- Create end part for the beam
+    local endPart = Instance.new("Part", workspace)
+    endPart.Anchored = true
+    endPart.Transparency = 1
+    endPart.Size = Vector3.new(1, 1, 1)
+    endPart.CFrame = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame * CFrame.new(endOffset.X, endOffset.Y, endOffset.Z)
+
+    -- Create the beam
+    local beam = Instance.new("Beam", startPart)
+    beam.FaceCamera = true
+    beam.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 191, 255)),   -- Deep sky blue
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(135, 206, 250))  -- Light sky blue
+    } -- Bright blue beam color
+    beam.Width0 = 2 -- Width at start
+    beam.Width1 = 2 -- Width at end
+    beam.Attachment0 = Instance.new("Attachment", startPart)
+    beam.Attachment1 = Instance.new("Attachment", endPart)
+
+    -- Set beam transparency over time
+    beam.Transparency = NumberSequence.new{
+        NumberSequenceKeypoint.new(0, 1), -- Fully transparent at start
+        NumberSequenceKeypoint.new(0.1, 0.5), -- Semi-transparent quickly
+        NumberSequenceKeypoint.new(1, 0) -- Fully opaque at the middle
+    }
+
+    -- Fade out effect
+    delay(0.75, function()
+        for i = 1, 10 do
+            beam.Transparency = NumberSequence.new(i / 10)
+            task.wait(0.1)
+        end
+        startPart:Destroy()
+        endPart:Destroy()
+    end)
+end
+
+-- Create 3 beams with different start and end positions
+createBeam(Vector3.new(0, 2.45, 3), Vector3.new(0, 2.45, -39.5)) -- Center beam
+createBeam(Vector3.new(-2, 2.45, 3), Vector3.new(-2, 2.45, -39.5)) -- Left beam
+createBeam(Vector3.new(2, 2.45, 3), Vector3.new(2, 2.45, -39.5)) -- Right beam
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://89044067797964"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+    end
+
+wait(5)
+game.Workspace.Four:Destroy()
+end
+
+--[[END OF MOVE 4 ANIM]]
+
+--[[Wall combo]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 15955393872
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 10
+    sound.PlaybackSpeed = 1
+    sound.Name = "WallCombo"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/DOORS/raw/refs/heads/main/lv_0_20251102113705.mp3?raw=true", 1, " SucK10")
+
+function info(txt)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+pcall(function() game.CoreGui.Revit:Destroy() end)
+task.wait(.1)
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = 'Revit'
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+
+
+spawn(function()
+Credits.Parent = ScreenGui
+Credits.Font=Enum.Font.Arcade
+Credits.TextColor3=Color3.new(1,1,1)
+Credits.Position = UDim2.new(0,0,0,0)
+Credits.TextSize = 35
+Credits.Size = UDim2.new(1,0,.1,0)
+Credits.Text = ''
+Credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Credits.BorderColor3 = Color3.fromRGB(0, 255, 0)
+end)
+function tw(var,s)
+local a = ""
+local s_l = #s
+for i = 1, s_l do
+local c = string.sub(s, i, i)
+a = a .. c
+var.Text = a
+if c == "." then
+wait(.6)
+elseif c == ";" then
+wait(.3)
+elseif c == "," then
+wait(.3)
+elseif c == "!" then
+wait(.3)
+end
+wait(.03)
+end end
+tw(Credits,txt)
+task.wait(2)
+ScreenGui:Destroy()
+end
+
+spawn(function()
+info('You: *Slashing* are you enjoying it?')
+
+end)
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.Sorcerer.WallFX.FirstSlam.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.FiveSeasonsFX.CharFX.HeatUp:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.FiveSeasonsFX.CharFX.WindupGlow:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://15290930205"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0.05
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+
+    end
+
+wait(8)
+game.Workspace.WallCombo:Destroy()
+end
+
+--[[END OF WALL COMBO ANIM]]
+
+--[[Ult Activation]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12447707844
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 10
+    sound.PlaybackSpeed = 1
+    sound.Name = "Ult"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/Scripts/raw/refs/heads/main/iLoveYt.net_YouTube_Sword-Sound-Effect-Sword-Slash-Sound-Eff_Media_gPDfpIhxyaU_001_360p.mp3?raw=true", 1, " SucK6")
+
+function info(txt)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+pcall(function() game.CoreGui.Revit:Destroy() end)
+task.wait(.1)
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = 'Revit'
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+
+
+spawn(function()
+Credits.Parent = ScreenGui
+Credits.Font=Enum.Font.Arcade
+Credits.TextColor3=Color3.new(1,1,1)
+Credits.Position = UDim2.new(0,0,0,0)
+Credits.TextSize = 35
+Credits.Size = UDim2.new(1,0,.1,0)
+Credits.Text = ''
+Credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Credits.BorderColor3 = Color3.fromRGB(0, 255, 0)
+end)
+function tw(var,s)
+local a = ""
+local s_l = #s
+for i = 1, s_l do
+local c = string.sub(s, i, i)
+a = a .. c
+var.Text = a
+if c == "." then
+wait(.6)
+elseif c == ";" then
+wait(.3)
+elseif c == "," then
+wait(.3)
+elseif c == "!" then
+wait(.3)
+end
+wait(.03)
+end end
+tw(Credits,txt)
+task.wait(2)
+ScreenGui:Destroy()
+end
+
+spawn(function()
+info('You: Yall are so done!! >;)')
+
+end)
+
+local function setBrightBlueColor(emitter)
+    if emitter:IsA("ParticleEmitter") then
+        -- Set the color to bright blue
+        emitter.Color = ColorSequence.new{
+            ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)), -- Bright blue start
+            ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0)) -- Even brighter blue end
+        }
+        emitter.LightEmission = 1 -- Increase light emission for glow effect
+    end
+end
+
+local explosion1 = game.ReplicatedStorage.Resources.Dragon["Explosion"].Part.Main:Clone()
+explosion1.Parent = character["Torso"]
+for _, child in ipairs(explosion1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        setBrightBlueColor(child) -- Apply bright blue color
+        child:Emit(1)
+    end
+end
+
+local explosion2 = game.ReplicatedStorage.Resources.Dragon["Explosion"].Part.Spacey:Clone()
+explosion2.Parent = character["Torso"]
+for _, child in ipairs(explosion2:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        setBrightBlueColor(child)
+        child:Emit(1)
+    end
+end
+
+local explosion3 = game.ReplicatedStorage.Resources.Dragon["Explosion"].Part.WindFast:Clone()
+explosion3.Parent = character["Torso"]
+for _, child in ipairs(explosion3:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        setBrightBlueColor(child)
+        child:Emit(1)
+    end
+end
+
+local explosion4 = game.ReplicatedStorage.Resources.Dragon["Explosion"].Part.BIgWIndyt:Clone()
+explosion4.Parent = character["Torso"]
+for _, child in ipairs(explosion4:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        setBrightBlueColor(child)
+        child:Emit(1)
+    end
+end
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId =
+"rbxassetid://13633468484"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1)
+
+    end
+
+wait(5)
+game.Workspace.Ult:Destroy()
+end
+
+--[[END OF ULT ACTIVATION ANIM]]
+
+--[[Dash]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 10479335397
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 5
+    sound.PlaybackSpeed = 1
+    sound.Name = "Dash"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/DOORS/raw/refs/heads/main/XRecorder_Edited_20251102_03.mp3?raw=true", 1, " SucK7")
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx2 = game:GetService("ReplicatedStorage").Resources.KJEffects.KJWallCombo.FinalImpact.Origin:Clone()
+fx2.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx2:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://15334974550"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(1.3)
+
+
+delay(1.8, function()
+
+    Anim:Stop()
+
+end)
+
+
+    end
+
+wait(4)
+game.Workspace.Dash:Destroy()
+end
+
+--[[END OF DASH ANIM]]
+
+--[[Uppercut]]
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 10503381238
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 5
+    sound.PlaybackSpeed = 1
+    sound.Name = "Uppercut"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/DOORS/raw/refs/heads/main/XRecorder_Edited_20251102_04.mp3?raw=true", 1, " SucK8")
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx2 = game:GetService("ReplicatedStorage").Resources.KJEffects.KJWallCombo.FinalImpact.Attachment:Clone()
+fx2.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx2:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://14900168720"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 1.3
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.7)
+
+
+    end
+
+wait(4)
+game.Workspace.Uppercut:Destroy()
+end
+
+--[[END OF UPPERCUT ANIM]]
+
+--[[Downslam]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 10470104242
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+function GitAud(soundgit,filename)
+    SoundName=tostring(SoundName)
+    local url=soundgit
+    local FileName = filename
+    writefile(FileName..".mp3", game:HttpGet(url))
+    return (getcustomasset or getsynasset)(FileName..".mp3")
+end
+
+function CustomGitSound(soundlink, vol, filename)
+    local sound = Instance.new("Sound")
+    sound.SoundId = GitAud(soundlink, filename)
+    sound.Parent = workspace
+    sound.Volume = 5
+    sound.PlaybackSpeed = 1
+    sound.Name = "Downslam"
+   sound:Play()
+end
+
+CustomGitSound("https://github.com/Guestly-Second-Account/DOORS/raw/refs/heads/main/XRecorder_Edited_20251102_05.mp3?raw=true", 1, " SucK9")
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx2 = game:GetService("ReplicatedStorage").Resources.KJEffects.KJWallCombo.FinalImpact.Attachment:Clone()
+fx2.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx2:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://12447247483"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+wait(0.2)
+
+Anim:Play()
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(6)
+
+
+    end
+
+wait(4)
+game.Workspace.Downslam:Destroy()
+end
+
+--[[END OF DOWNSLAM ANIM]]
+
+--[[Punch anims]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local animationIdsToStop = {
+
+    [17859015788] = true,
+
+    [10469493270] = true,
+
+    [10469630950] = true,
+
+    [10469639222] = true,
+
+    [10469643643] = true,
+
+}
+
+
+local replacementAnimations = {
+
+    ["17859015788"] = "rbxassetid://12684185971",
+
+    ["10469643643"] = "rbxassetid://17889290569",
+
+    ["10469639222"] = "rbxassetid://17889471098",
+
+    ["10469630950"] = "rbxassetid://17889461810",
+
+    ["10469493270"] = "rbxassetid://17889458563",
+
+    ["11365563255"] = "rbxassetid://14516273501"
+
+}
+
+
+local queue = {}
+
+local isAnimating = false
+
+
+local function playReplacementAnimation(animationId)
+
+    if isAnimating then
+
+        table.insert(queue, animationId)
+
+        return
+
+    end
+
+   
+
+    isAnimating = true
+
+    local replacementAnimationId = replacementAnimations[tostring(animationId)]
+
+    if replacementAnimationId then
+
+        local AnimAnim = Instance.new("Animation")
+
+        AnimAnim.AnimationId = replacementAnimationId
+
+        local Anim = humanoid:LoadAnimation(AnimAnim)
+
+        Anim:Play()
+
+       
+
+        Anim.Stopped:Connect(function()
+
+            isAnimating = false
+
+            if #queue > 0 then
+
+                local nextAnimationId = table.remove(queue, 1)
+
+                playReplacementAnimation(nextAnimationId)
+
+            end
+
+        end)
+
+    else
+
+        isAnimating = false
+
+    end
+
+end
+
+
+local function stopSpecificAnimations()
+
+    for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+
+        local animationId = tonumber(track.Animation.AnimationId:match("%d+"))
+
+        if animationIdsToStop[animationId] then
+
+            track:Stop()
+
+        end
+
+    end
+
+end
+
+
+local function onAnimationPlayed(animationTrack)
+
+    local animationId = tonumber(animationTrack.Animation.AnimationId:match("%d+"))
+
+    if animationIdsToStop[animationId] then
+
+        stopSpecificAnimations()
+
+        animationTrack:Stop()
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.DeadlySliceVfx.ParticleSequence.Part.Attachment1:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.AtomicSlash.AtomicSlash.Part.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.SunsetEffects.Slash1Part.Slash1Part.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+       local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.SunsetEffects.Begin.Begin.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Right Arm"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+        local replacementAnimationId = replacementAnimations[tostring(animationId)]
+
+        if replacementAnimationId then
+
+            playReplacementAnimation(animationId)
+
+        end
+
+    end
+
+end
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+
+local function onBodyVelocityAdded(bodyVelocity)
+
+    if bodyVelocity:IsA("BodyVelocity") then
+
+        bodyVelocity.Velocity = Vector3.new(bodyVelocity.Velocity.X, 0, bodyVelocity.Velocity.Z)
+
+    end
+
+end
+
+
+character.DescendantAdded:Connect(onBodyVelocityAdded)
+
+
+for _, descendant in pairs(character:GetDescendants()) do
+
+    onBodyVelocityAdded(descendant)
+
+end
+
+
+player.CharacterAdded:Connect(function(newCharacter)
+
+    character = newCharacter
+
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    character.DescendantAdded:Connect(onBodyVelocityAdded)
+
+   
+
+    for _, descendant in pairs(character:GetDescendants()) do
+
+        onBodyVelocityAdded(descendant)
+
+    end
+
+end)
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.DragonUppercut.Hit.mFx.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.DragonUppercut.Hit.mFx.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.DragonUppercut.Hit.mFx.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.DragonUppercut.Hit.mFx.Attachment:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Torso"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.LastBreath.Resources.Attachments.LeftHand.Part.ArmParticles2:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.LastBreath.Resources.Attachments.LeftHand.Part.ArmParticles:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.LastBreath.Resources.Attachments.RightHand.Part.ArmParticles2:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+local brightBlue = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),   -- Deep sky blue
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 0)), -- Dodger blue
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 255, 0))   -- Light sky blue
+}
+
+local fx1 = game:GetService("ReplicatedStorage").Resources.LastBreath.Resources.Attachments.RightHand.Part.ArmParticles:Clone()
+fx1.Parent = game.Players.LocalPlayer.Character["Left Arm"]
+for _, child in ipairs(fx1:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child.Color = brightBlue -- Change particle color to bright blue
+        child:Emit(20) -- Emit 20 particles
+    end
+end
+
+while true do wait(0)
+if game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
+game.Workspace.SucK:Destroy()
+
+function info(txt)
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local Credits = Instance.new("TextLabel")
+pcall(function() game.CoreGui.Revit:Destroy() end)
+task.wait(.1)
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Name = 'Revit'
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 255, 0)
+
+
+spawn(function()
+Credits.Parent = ScreenGui
+Credits.Font=Enum.Font.Arcade
+Credits.TextColor3=Color3.new(1,1,1)
+Credits.Position = UDim2.new(0,0,0,0)
+Credits.TextSize = 35
+Credits.Size = UDim2.new(1,0,.1,0)
+Credits.Text = ''
+Credits.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Credits.BorderColor3 = Color3.fromRGB(0, 255, 0)
+end)
+function tw(var,s)
+local a = ""
+local s_l = #s
+for i = 1, s_l do
+local c = string.sub(s, i, i)
+a = a .. c
+var.Text = a
+if c == "." then
+wait(.6)
+elseif c == ";" then
+wait(.3)
+elseif c == "," then
+wait(.3)
+elseif c == "!" then
+wait(.3)
+end
+wait(.03)
+end end
+tw(Credits,txt)
+task.wait(2)
+ScreenGui:Destroy()
+end
+
+spawn(function()
+info('You: You will regret that!! >:(')
+
+end)
+
+game.Lighting.ClockTime = 0
+end
+end
