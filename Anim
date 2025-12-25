@@ -1,0 +1,56 @@
+-- ts file was generated at discord.gg/25ms
+
+
+print("TikTok:@x.an3929")
+local v1 = game:GetService("Players").LocalPlayer
+local vu2 = {
+    Idle1 = 122257458498464,
+    Idle2 = 102357151005774,
+    Walk = 122150855457006,
+    Run = 82598234841035,
+    Jump = 75290611992385,
+    Climb = 88763136693023,
+    Fall = 98600215928904,
+    Swim = 133308483266208,
+    SwimIdle = 109346520324160
+}
+local function v5(pu3)
+    task.spawn(function()
+        local vu4 = pu3:WaitForChild("Animate", 10)
+        if vu4 then
+            pcall(function()
+                if vu4.idle and vu4.idle.Animation1 then
+                    vu4.idle.Animation1.AnimationId = "rbxassetid://" .. vu2.Idle1
+                end
+                if vu4.idle and vu4.idle.Animation2 then
+                    vu4.idle.Animation2.AnimationId = "rbxassetid://" .. vu2.Idle2
+                end
+                if vu4.walk and vu4.walk.WalkAnim then
+                    vu4.walk.WalkAnim.AnimationId = "rbxassetid://" .. vu2.Walk
+                end
+                if vu4.run and vu4.run.RunAnim then
+                    vu4.run.RunAnim.AnimationId = "rbxassetid://" .. vu2.Run
+                end
+                if vu4.jump and vu4.jump.JumpAnim then
+                    vu4.jump.JumpAnim.AnimationId = "rbxassetid://" .. vu2.Jump
+                end
+                if vu4.climb and vu4.climb.ClimbAnim then
+                    vu4.climb.ClimbAnim.AnimationId = "rbxassetid://" .. vu2.Climb
+                end
+                if vu4.fall and vu4.fall.FallAnim then
+                    vu4.fall.FallAnim.AnimationId = "rbxassetid://" .. vu2.Fall
+                end
+                if vu4.swim and vu4.swim.Swim then
+                    vu4.swim.Swim.AnimationId = "rbxassetid://" .. vu2.Swim
+                end
+                if vu4.swimidle and vu4.swimidle.SwimIdle then
+                    vu4.swimidle.SwimIdle.AnimationId = "rbxassetid://" .. vu2.SwimIdle
+                end
+            end)
+        end
+    end)
+end
+if v1.Character then
+    v5(v1.Character)
+end
+v1.CharacterAdded:Connect(v5)
