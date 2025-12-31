@@ -1,0 +1,196 @@
+-- ================= SERVICES =================
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local Lighting = game:GetService("Lighting")
+
+-- ================= PLAYER =================
+local plr = Players.LocalPlayer
+local chr = plr.Character or plr.CharacterAdded:Wait()
+local hum = chr:WaitForChild("Humanoid")
+local hrp = chr:WaitForChild("HumanoidRootPart")
+
+-- ================= STATE =================
+local STATE = {
+	Active = true,
+	CanMove = false,
+	LastTouchTime = tick(),
+}
+
+-- ================= LOAD ENTITY =================
+local model = game:GetObjects("rbxassetid://118643153130171")[1]
+model.Parent = workspace
+model.Name = "Entity01"
+
+local entity = model:FindFirstChildWhichIsA("BasePart")
+entity.Anchored = true
+entity.CanCollide = false
+entity.CFrame = hrp.CFrame * CFrame.new(0, 0, 25)
+
+-- ================= EFFECT =================
+local cc = Instance.new("ColorCorrectionEffect")
+cc.Name = "GoofierRed"
+cc.Parent = Lighting
+cc.TintColor = Color3.fromRGB(255,255,255)
+cc.Contrast = 0
+
+-- ================= CONFIG =================
+local RED_MAX = 35
+local RED_MIN = 8
+
+local SHAKE_DISTANCE = 10
+local SHAKE_POWER = 0.12
+
+local DESPAWN_TIME = 30
+local START_DELAY = 3
+
+-- ================= START DELAY =================
+task.delay(START_DELAY, function()
+	if STATE.Active then
+		STATE.CanMove = true
+	end
+end)
+
+-- ================= MAIN LOOP =================
+local cam = workspace.CurrentCamera
+local connection
+connection = RunService.RenderStepped:Connect(function(dt)
+	if not STATE.Active or not entity.Parent then
+		connection:Disconnect()
+		return
+	end
+
+	local dist = (entity.Position - hrp.Position).Magnitude
+
+	-- ===== RED SCREEN =====
+	local alpha = math.clamp(
+		1 - ((dist - RED_MIN) / (RED_MAX - RED_MIN)),
+		0, 1
+	)
+
+	cc.TintColor = Color3.new(
+		1,
+		1 - alpha * 0.7,
+		1 - alpha * 0.7
+	)
+	cc.Contrast = alpha * 0.2
+
+	-- ===== CAMERA SHAKE =====
+	if dist <= SHAKE_DISTANCE then
+		local i = math.clamp(1 - (dist / SHAKE_DISTANCE), 0, 1)
+		cam.CFrame = cam.CFrame * CFrame.new(
+			(math.random()-0.5)*SHAKE_POWER*i,
+			(math.random()-0.5)*SHAKE_POWER*i,
+			0
+		)
+	end
+
+	-- ===== HIDE CHECK =====
+	if chr:GetAttribute("Hiding") then
+		return
+	end
+
+	-- ===== MOVE =====
+	if STATE.CanMove then
+		local speed = hum.WalkSpeed
+		local dir = (hrp.Position - entity.Position)
+		if dir.Magnitude > 1 then
+			entity.CFrame += dir.Unit * speed * dt
+		end
+	end
+
+	-- ===== TOUCH =====
+	if dist <= 2.5 then
+		STATE.Active = false
+		model:Destroy()
+
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(0, 0, 0)
+wait(3)
+
+-- ===== JUMPSCARE SCRIPT =====
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
+
+-- ===== SCREEN GUI =====
+local gui = Instance.new("ScreenGui")
+gui.Name = "JumpScareGui"
+gui.IgnoreGuiInset = true
+gui.ResetOnSpawn = false
+gui.Parent = PlayerGui
+
+-- ===== IMAGE =====
+local img = Instance.new("ImageLabel")
+img.Name = "Face"
+img.Parent = gui
+img.AnchorPoint = Vector2.new(0.5, 0.5)
+img.Position = UDim2.fromScale(0.5, 0.5)
+img.Size = UDim2.fromScale(1, 1) -- kích thước vừa
+img.BackgroundTransparency = 1
+
+-- 👉 BẠN TỰ THAY IMAGE ID Ở ĐÂY
+img.Image = "rbxassetid://104647389465726"
+
+-- FIX XẸP ẢNH
+img.ScaleType = Enum.ScaleType.Fit
+img.SizeConstraint = Enum.SizeConstraint.RelativeYY
+
+-- ===== SOUND =====
+local sound = Instance.new("Sound")
+sound.Name = "JumpScareSound"
+sound.Parent = gui
+sound.Volume = 1
+
+-- 👉 BẠN TỰ THAY SOUND ID Ở ĐÂY
+sound.SoundId = "rbxassetid://313948389"
+
+sound:Play()
+
+-- ===== SHAKE CONFIG =====
+local SHAKE_POWER = 6 -- rung nhẹ
+local connection
+local startTime = tick()
+
+-- ===== SHAKE LOOP =====
+connection = RunService.RenderStepped:Connect(function()
+	local t = tick() - startTime
+	if t >= 7 then
+		connection:Disconnect()
+		gui:Destroy()
+   sound:Destroy()
+   game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 255, 255)
+game.Players.LocalPlayer.Character.Humanoid:TakeDamage(100)
+
+-- If the player dies, update the death cause and show the death hint
+        if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+            -- Show death hint
+            firesignal(game.ReplicatedStorage.RemotesFolder.DeathHint.OnClientEvent, {"- .... . / ..-. . .- .-. -. . ... ... / -.. .. -.. / -. --- - / . -. -.. / -.-- . -
+",". ...- . .-. -.-- - .... .. -. --. / .- .-. --- ..- -. -.. / -.-- --- ..- / .. ... -. .----. - / -. --- .-. -- .- .-..
+","-.-- --- ..- / .-- --- -. .----. - / . ... -.-. .- .--. . / - .... . / -.. .- .-. -.- -. . ... ... .-.-.-
+"},"Blue")
+            wait(0.01)
+            -- Update the death cause in the game stats
+            game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "UNKNOWN"
+        end
+    end
+end)
+
+		return
+	end
+
+	local offsetX = math.random(-SHAKE_POWER, SHAKE_POWER)
+	local offsetY = math.random(-SHAKE_POWER, SHAKE_POWER)
+
+	img.Position = UDim2.fromScale(0.5, 0.5)
+		+ UDim2.fromOffset(offsetX, offsetY)
+end)
+
+	end
+end)
+
+-- ================= CLEANUP =================
+model.Destroying:Connect(function()
+	STATE.Active = false
+	cc:Destroy()
+end)
